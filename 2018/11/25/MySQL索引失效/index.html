@@ -10,7 +10,7 @@
     <meta name="description" content>
     
     <title>
-      Archives - A.T.Filed
+      MySQL索引失效 - A.T.Filed
     </title>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -48,7 +48,7 @@
             Home
           </a>
             
-          <a href="javascript:void(0)" class="current">
+          <a href="/archives" class>
             Archives
           </a>
             
@@ -92,275 +92,113 @@
 
     <div id="container">
       <div class="main">
-        <div class="archives">
-    
-    
+        <article class="post-entry">
+    <div class="header">
+      <div class="title">MySQL索引失效</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2018/11/25</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2018/11/25/MySQL索引失效/" data-flag-title="MySQL索引失效">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
 
-
-
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2019" class="archive-meta">
-            2019
-        </a>
+        
+        
+        
+      </div>
+      <div>
+      </div>
     </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/08/18/林深时见鹿/">
-                        林深时见鹿
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/08/18</span>
-                    </span>
-                    
+    <p>Google了很多”MySQL索引失效”的文章，写的都很杂乱，于是自己综合了几篇文章，整理了一下。</p>
+<p>参考资料：</p>
+<p><a href="https://www.jianshu.com/p/932bcdf2c89f" target="_blank" rel="noopener">https://www.jianshu.com/p/932bcdf2c89f</a></p>
+<p><a href="https://blog.csdn.net/u010796790/article/details/52194850" target="_blank" rel="noopener">https://blog.csdn.net/u010796790/article/details/52194850</a></p>
+<hr>
+<p> 索引失效的场景：</p>
+<ol>
+<li><p>like 以%开头，索引无效；当like前缀没有%，后缀有%时，索引有效。</p>
+</li>
+<li><p>or语句前后没有同时使用索引。当or左右查询字段只有一个是索引，该索引失效，只有当or左右查询字段均为索引时，才会生效。</p>
+</li>
+<li><p>组合索引，不是使用第一列索引，索引失效。</p>
+</li>
+<li><p>数据类型出现隐式转化。如varchar不加单引号的话可能会自动转换为int型，使索引无效，产生全表扫描。</p>
+</li>
+<li><p>在索引列上使用 IS NULL 或 IS NOT NULL操作。索引是不索引空值的，所以这样的操作不能使用索引，可以用其他的办法处理，例如：数字类型，判断大于0，字符串类型设置一个默认值，判断是否等于默认值即可。</p>
+</li>
+<li><p>在索引字段上使用not，&lt;&gt;，!=。不等于操作符是永远不会用到索引的，因此对它的处理只会产生全表扫描。 优化方法： key&lt;&gt;0 改为 key&gt;0 or key&lt;0。</p>
+</li>
+<li><p>对索引字段进行计算操作。</p>
+</li>
+<li><p>在索引字段上使用函数。</p>
+</li>
+<li><p>当全表扫描速度比索引速度快时，mysql会使用全表扫描，此时索引失效。</p>
+</li>
+</ol>
+<p>索引失效分析工具：</p>
+<p>可以使用explain命令加在要分析的sql语句前面，在执行结果中查看key这一列的值，如果为NULL，说明没有使用索引。</p>
+<p>explain命令的详细用法，可以查看这篇文章：<a href="https://segmentfault.com/a/1190000008131735" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008131735</a></p>
 
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/25/我最喜欢的电影/">
-                        我最喜欢的电影
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/16/JNI调用两层C++动态库/">
-                        JNI调用两层C++动态库
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/16</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/06/12/时间管理/">
-                        时间管理
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/06/12</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/04/23/这些年/">
-                        这些年
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/04/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/02/15/node js调试的三种方法/">
-                        node js调试的三种方法
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/02/15</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-
-</div>
-</section>
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2018" class="archive-meta">
-            2018
-        </a>
-    </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/12/02/海量数据处理面试题六大套路/">
-                        海量数据处理面试题六大套路
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/12/02</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/25/MySQL索引失效/">
-                        MySQL索引失效
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">
-                        2018阿里巴巴在线编程题--将数组分割为和相等的三段
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">
-                        2018阿里巴巴在线编程题--输出最大时间和最小时间
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/22</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-        
-    </div>
-</section>
 
   
 
-  <div class="paginator">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a>
+  
+    <div class="post-reward">
+      <div id="reward-button">请杯咖啡呗~</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="2018/12/02/海量数据处理面试题六大套路/"><span class="iconfont icon-left"></span>海量数据处理面试题六大套路</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">2018阿里巴巴在线编程题--将数组分割为和相等的三段<span class="iconfont icon-right"></span></a>
+        
+    </div>
   </div>
-</div>
 
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="http://ligang945.github.io">ligang</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="http://ligang945.github.io/2018/11/25/MySQL索引失效/">http://ligang945.github.io/2018/11/25/MySQL索引失效/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="http://ligang945.github.io">ligang</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+</article>
         <footer>
           <div class="copyright">
             ©2019 <a href="http://ligang945.github.io">ligang</a>
@@ -417,7 +255,7 @@
             
           </div>
         </div>
-        
+          
       </div>
     </div>
     <!-- swiftype -->

@@ -10,7 +10,7 @@
     <meta name="description" content>
     
     <title>
-      Archives - A.T.Filed
+      查找电脑里重复的照片 - A.T.Filed
     </title>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -48,7 +48,7 @@
             Home
           </a>
             
-          <a href="javascript:void(0)" class="current">
+          <a href="/archives" class>
             Archives
           </a>
             
@@ -92,275 +92,125 @@
 
     <div id="container">
       <div class="main">
-        <div class="archives">
-    
-    
+        <article class="post-entry">
+    <div class="header">
+      <div class="title">查找电脑里重复的照片</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2018/11/10</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2018/11/10/查找电脑里重复的照片/" data-flag-title="查找电脑里重复的照片">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
 
-
-
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2019" class="archive-meta">
-            2019
-        </a>
+        
+        
+        
+      </div>
+      <div>
+      </div>
     </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/08/18/林深时见鹿/">
-                        林深时见鹿
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/08/18</span>
-                    </span>
-                    
+    <p>我的个人电脑里最占空间的就是电影和照片了，照片整理来整理去，存在不少重复的，就想着能不能写段代码找到那些重复的照片。</p>
+<p>原理比较简单粗暴，就是遍历所有的照片，计算MD5，MD5一样的就是重复的~</p>
+<p>用Java写的，顺便练习一下Java~</p>
+<pre><code>import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.FileUtils;
 
-                    
-                </div>
-            </div>
-        </article>
-        
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
 
+public class Main {
+    private static String PHOTO_PATH = &quot;D:\\照片&quot;;
+    private static String[] extensions = {&quot;jpg&quot;};
+    private static HashMap&lt;String, File&gt; hashMap = new HashMap&lt;&gt;();
 
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/25/我最喜欢的电影/">
-                        我最喜欢的电影
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/25</span>
-                    </span>
-                    
+    public static void main(String[] args) throws IOException {
+        Collection files = FileUtils.listFiles(
+                new File(PHOTO_PATH), extensions, true);
+        for (File file : files) {
+            FileInputStream fis = new FileInputStream(file);
+            String md5 = DigestUtils.md5Hex(fis);
+            checkSame(md5, file);
+            fis.close();
+        }
 
-                    
-                </div>
-            </div>
-        </article>
-        
+        System.out.println(&quot;Job done!&quot;);
+    }
 
+    private static void checkSame(String md5, File file) {
+        if (hashMap.containsKey(md5)) {
+            System.out.println(String.format(&quot;%-150s&quot;,
+                    hashMap.get(md5).getAbsolutePath())
+                    + &quot; -- &quot; + file.getAbsolutePath());
+        } else {
+            hashMap.put(md5, file);
+        }
+    }
+}</code></pre><p>有些照片太大了，我会用FSResizer（神器，推荐一下）调整分辨率，让文件变小一点。调整前后的两张照片其实是一样的，但是计算MD5的方法就不适用了。</p>
+<p>这样的问题需要通过计算两张照片的汉明距离来解决，代码较多，就不贴在博客里了，请移步<a href="https://github.com/ligang945/findSimilarPhoto" title="我的GitHub" target="_blank" rel="noopener">我的GitHub</a></p>
 
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/16/JNI调用两层C++动态库/">
-                        JNI调用两层C++动态库
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/16</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/06/12/时间管理/">
-                        时间管理
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/06/12</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/04/23/这些年/">
-                        这些年
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/04/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/02/15/node js调试的三种方法/">
-                        node js调试的三种方法
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/02/15</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-
-</div>
-</section>
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2018" class="archive-meta">
-            2018
-        </a>
-    </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/12/02/海量数据处理面试题六大套路/">
-                        海量数据处理面试题六大套路
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/12/02</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/25/MySQL索引失效/">
-                        MySQL索引失效
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">
-                        2018阿里巴巴在线编程题--将数组分割为和相等的三段
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">
-                        2018阿里巴巴在线编程题--输出最大时间和最小时间
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/22</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-        
-    </div>
-</section>
 
   
 
-  <div class="paginator">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a>
+  
+    <div class="post-reward">
+      <div id="reward-button">请杯咖啡呗~</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/"><span class="iconfont icon-left"></span>2018阿里巴巴在线编程题--输出最大时间和最小时间</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="2018/11/10/我的上网配置/">我的上网配置<span class="iconfont icon-right"></span></a>
+        
+    </div>
   </div>
-</div>
 
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="http://ligang945.github.io">ligang</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="http://ligang945.github.io/2018/11/10/查找电脑里重复的照片/">http://ligang945.github.io/2018/11/10/查找电脑里重复的照片/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="http://ligang945.github.io">ligang</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+</article>
         <footer>
           <div class="copyright">
             ©2019 <a href="http://ligang945.github.io">ligang</a>
@@ -417,7 +267,7 @@
             
           </div>
         </div>
-        
+          
       </div>
     </div>
     <!-- swiftype -->

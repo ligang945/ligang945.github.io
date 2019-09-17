@@ -10,7 +10,7 @@
     <meta name="description" content>
     
     <title>
-      Archives - A.T.Filed
+      2018阿里巴巴在线编程题--输出最大时间和最小时间 - A.T.Filed
     </title>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -48,7 +48,7 @@
             Home
           </a>
             
-          <a href="javascript:void(0)" class="current">
+          <a href="/archives" class>
             Archives
           </a>
             
@@ -92,275 +92,153 @@
 
     <div id="container">
       <div class="main">
-        <div class="archives">
-    
-    
+        <article class="post-entry">
+    <div class="header">
+      <div class="title">2018阿里巴巴在线编程题--输出最大时间和最小时间</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2018/11/22</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/" data-flag-title="2018阿里巴巴在线编程题--输出最大时间和最小时间">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
 
-
-
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2019" class="archive-meta">
-            2019
-        </a>
+        
+        
+        
+      </div>
+      <div>
+      </div>
     </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/08/18/林深时见鹿/">
-                        林深时见鹿
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/08/18</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
+    <p>在其他博客上看到一道<br>“<a href="https://blog.csdn.net/IT_BOY__/article/details/79461752" target="_blank" rel="noopener">2018阿里巴巴在线编程题</a>“</p>
+<blockquote>
+<p>我记得题目大概是这样的：输入数据n（n&gt;=6）代表n个数，从0-9任意输入n个数，然后在n个数选出6个数xx-xx-xx表示<br>时：分：秒，求出最小时间和最大时间，若时间无效，则输出时间无效，例如：<br>输入：<br>6<br>6 5 4 3 2 1<br>输出：<br>123456 235641</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>输入：<br>6<br>9 9 9 9 9 9<br>输出：<br>时间无效</p>
+</blockquote>
+<p>看着有点意思，就自己做了一遍，输出格式自己美化了一下，没有严格按照题目要求。代码如下：</p>
+<pre><code>def find_min_in_range(l, lb, ub):
+    if lb &gt; l[-1] or ub &lt; l[0]:
+        return -1
+    for x in l[:]:
+        if x &gt;= lb:
+            l.remove(x)
+            return x
 
 
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/25/我最喜欢的电影/">
-                        我最喜欢的电影
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
+def find_max_in_range(l, lb, ub):
+    if ub &lt; l[-1] or lb &gt; l[0]:
+        return -1
+    for x in l[:]:
+        if x &lt;= ub:
+            l.remove(x)
+            return x
 
 
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/16/JNI调用两层C++动态库/">
-                        JNI调用两层C++动态库
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/16</span>
-                    </span>
-                    
+l0 = [3, 5, 1, 7, 4, 2, 9, 9]
+# l0 = [9, 5, 1, 7, 4, 2, 9, 9]
 
-                    
-                </div>
-            </div>
-        </article>
-        
+l1 = l0[:]
+l1.sort()
 
+l2 = l1[:]
+l2.reverse()
 
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/06/12/时间管理/">
-                        时间管理
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/06/12</span>
-                    </span>
-                    
+min_h0 = find_min_in_range(l1, 0, 2)
+if min_h0 == 2:
+    min_h1 = find_min_in_range(l1, 0, 3)
+else:
+    min_h1 = find_min_in_range(l1, 0, 9)
 
-                    
-                </div>
-            </div>
-        </article>
-        
+min_m0 = find_min_in_range(l1, 0, 5)
+min_m1 = find_min_in_range(l1, 0, 9)
 
+min_s0 = find_min_in_range(l1, 0, 5)
+min_s1 = find_min_in_range(l1, 0, 9)
 
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/04/23/这些年/">
-                        这些年
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/04/23</span>
-                    </span>
-                    
+max_h0 = find_max_in_range(l2, 0, 2)
+if max_h0 == 2:
+    max_h1 = find_max_in_range(l2, 0, 3)
+else:
+    max_h1 = find_max_in_range(l2, 0, 9)
 
-                    
-                </div>
-            </div>
-        </article>
-        
+max_m0 = find_max_in_range(l2, 0, 5)
+max_m1 = find_max_in_range(l2, 0, 9)
 
+max_s0 = find_max_in_range(l2, 0, 5)
+max_s1 = find_max_in_range(l2, 0, 9)
 
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/02/15/node js调试的三种方法/">
-                        node js调试的三种方法
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/02/15</span>
-                    </span>
-                    
+if -1 in [min_h0, min_h1, min_m0, min_m1, min_s0, min_s1, max_h0, max_h1, max_m0, max_m1, max_s0, max_s1]:
+    print(&apos;invalid data&apos;)
+else:
+    print(&quot;min clock: %s%s:%s%s:%s%s&quot; % (min_h0, min_h1, min_m0, min_m1, min_s0, min_s1))
+    print(&quot;max clock: %s%s:%s%s:%s%s&quot; % (max_h0, max_h1, max_m0, max_m1, max_s0, max_s1))</code></pre><p>输出：</p>
+<blockquote>
+<p>min clock: 12:34:57<br>max clock: 23:59:49</p>
+</blockquote>
 
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-
-</div>
-</section>
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2018" class="archive-meta">
-            2018
-        </a>
-    </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/12/02/海量数据处理面试题六大套路/">
-                        海量数据处理面试题六大套路
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/12/02</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/25/MySQL索引失效/">
-                        MySQL索引失效
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">
-                        2018阿里巴巴在线编程题--将数组分割为和相等的三段
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">
-                        2018阿里巴巴在线编程题--输出最大时间和最小时间
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/22</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-        
-    </div>
-</section>
 
   
 
-  <div class="paginator">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a>
+  
+    <div class="post-reward">
+      <div id="reward-button">请杯咖啡呗~</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/"><span class="iconfont icon-left"></span>2018阿里巴巴在线编程题--将数组分割为和相等的三段</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="2018/11/10/查找电脑里重复的照片/">查找电脑里重复的照片<span class="iconfont icon-right"></span></a>
+        
+    </div>
   </div>
-</div>
 
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="http://ligang945.github.io">ligang</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="http://ligang945.github.io/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">http://ligang945.github.io/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="http://ligang945.github.io">ligang</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+</article>
         <footer>
           <div class="copyright">
             ©2019 <a href="http://ligang945.github.io">ligang</a>
@@ -417,7 +295,7 @@
             
           </div>
         </div>
-        
+          
       </div>
     </div>
     <!-- swiftype -->

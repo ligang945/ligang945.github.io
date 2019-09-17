@@ -10,7 +10,7 @@
     <meta name="description" content>
     
     <title>
-      Archives - A.T.Filed
+      你不了解的SVN - A.T.Filed
     </title>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -48,7 +48,7 @@
             Home
           </a>
             
-          <a href="javascript:void(0)" class="current">
+          <a href="/archives" class>
             Archives
           </a>
             
@@ -92,275 +92,85 @@
 
     <div id="container">
       <div class="main">
-        <div class="archives">
-    
-    
+        <article class="post-entry">
+    <div class="header">
+      <div class="title">你不了解的SVN</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2018/11/09</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2018/11/09/你不了解的SVN/" data-flag-title="你不了解的SVN">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
 
-
-
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2019" class="archive-meta">
-            2019
-        </a>
+        
+        
+        
+      </div>
+      <div>
+      </div>
     </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/08/18/林深时见鹿/">
-                        林深时见鹿
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/08/18</span>
-                    </span>
-                    
+    <p>贴上一篇旧文，2013-08-06 我发表在部门周刊上的，一晃都五年多了~ 当时是看完 svn cookbook 后写的，满满的翻译腔，哈哈~~ -–<br>作为码农，版本控制工具SVN是我们最常用的软件之一。 可是，仔细想想，除了svn update，svn commit，svn log，svn<br>diff，你还知道什么？ 当然，这几个命令已经足以满足我们80%的需求。 然而，总有几个问题，让你泪流满面，总有一种力量，让你前行。<br>通过一些工作中遇到的场景，本文将为你介绍一下那些你不了解却能在关键时刻救你于水火的SVN命令。 &gt; TortoiseSVN并不等同于SVN。 &gt; &gt;<br>在安装TortoiseSVN时勾选“安装命令行”，本文内容在windows下亦有效。 ####<br>1、我常用的某个目录中包含一个与我关联不大的目录，而且它经常更新，文件内容很多很大，这真的不是我想要的。<br>首先，问题的根源在于目录结构划分的不合理。在你解决这个问题之前，你可以使用其它方法来回避。 &gt; svn update –set-depth exclude<br>biiiiigFolder &gt; 这将会更新除了 biiiiigFolder 以外的其他目录。下次你只需使用svn update即可。 取消这种设定，使用 &gt;<br>svn update –set-depth infinity &gt; ####<br>2、我不喜欢把代码mount到服务器上，因此我在服务器上保留了一份工作副本，几天前我做了一些修改，但是我现在忘了我修改了哪些文件，怎么办？<br>如果出现这种情况，你很可能编译出一个不是你想要的版本，进而可能给你带来一些未知的、莫名其妙的bug，浪费你的时间。一个简单的命令将会解决这个问题。 &gt;<br>svn status &gt; 它将会列出文件或目录的状态，如果状态为M，则代表它被修改了。 接下来，你可以使用 &gt; svn diff filename &gt;<br>来查看这些修改是不是你想要的，然后使用 &gt; svn revert filename &gt; 来还原那些你不想修改的文件。<br>有趣的是，这三个命令都可以在没有网络的情况下工作。 #### 3、我需要回到几周之前的版本上去定位某个问题，可是我除了svn<br>update一无所知，我该怎么办？ 事实上，svn update已经足够了，你只需要再加上一个参数。 &gt; svn update –r 123 &gt; ####<br>4、我现在的版本号是10001，我想要查看某个文件在版本号101和1001时的差异，难道我需要下载两个工作副本，并分别回退到101和1001再比较吗？<br>这样的场景想想都让人抓狂，幸运的是，你不必这样做。 &gt; svn diff –r 101:1001 omg.cpp &gt;<br>什么感觉？恍然大悟+不过如此？如果你在windows下设置了外部比较工具， &gt; SET DIFF3=”C:\Program Files\Funky<br>Stuff\My Merge Tool.exe” &gt; 上述命令将会给你带来足够的惊喜。 ####<br>5、不管怎么样，我都无法更新任何文件，这到底是怎么了？我该重装操作系统还是该把电脑砸了？ 导致这种情况的原因有多个，常见的有两种：<br>（1）这份工作副本是你从其他人那里拷贝过来的，鉴权文件不一致——你不应该这样做，删除它自己check out吧。<br>（2）上次的SVN操作中断了，工作拷贝中遗留的日志文件中还有部分工作拷贝锁。这时只需使用清理命令即可。 &gt; svn cleanup &gt; ####<br>6、我花了几个小时做了一些修改，但是当我想归并它的时候，却发现它被不在办公室的小明锁定了，版本构建在即，我必须立刻马上就把它归并！怎么办！<br>你可以从技术上暂时解决这个问题，但是你得知道这并不是个技术问题。 svn在设计上并不鼓励加锁，因此并非管理员才可以解除锁定，任何用户只需要使用 &gt; svn<br>unlock –f filename &gt; 就可以打破锁定。你甚至可以使用 &gt; svn lock –f filename &gt;<br>来窃取锁定。这个文件不再是被小明加锁而是被你加锁了。 然而，滥用锁定、打破锁定、窃取锁定将会打开潘多拉的魔盒，你不应该轻易使用这三个命令中的任何一个。<br>svn的版本控制模型不是“锁定-修改-解锁”，而是“拷贝-修改-合并”。 svn保留了加锁-<br>解锁机制是为了使其也能应用于那些不能根据上下文合并的文件，比如一段视频、一副图纸。<br>对可以根据上下文合并的代码文件加锁，导致的一个显而易见的问题是造成用户等待，降低团队效率； 另一个问题更严重，一旦小明归并-<br>解锁，几乎必然会导致其他人的工作拷贝冲突（如果不会冲突那为什么要加锁 呢），进而导致另其他人的工作白费。<br>如果你不想让自己的工作白费，就去打破锁定、窃取锁定，而这将导致小明的工作白费。 毫无疑问，滥用加锁将会使团队充满负能量。<br>说到最后，真正解决这个问题的办法是：加强团队沟通。 当团队缺乏沟通，语法和语义的冲突就会增加，没有系统可以强制用户完美的交流，没有系统可以检测语义上的冲<br>突，所以没有任何证据能够承诺锁定系统可以防止冲突。 一个可操作的方法是：如果文件修改不会和其他人冲突，那就不加锁，如果可以预见必然会产生冲突，你应该加锁<br>并通知其他人在你解除锁定之后再做修改。</p>
 
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/25/我最喜欢的电影/">
-                        我最喜欢的电影
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/16/JNI调用两层C++动态库/">
-                        JNI调用两层C++动态库
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/16</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/06/12/时间管理/">
-                        时间管理
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/06/12</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/04/23/这些年/">
-                        这些年
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/04/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/02/15/node js调试的三种方法/">
-                        node js调试的三种方法
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/02/15</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-
-</div>
-</section>
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2018" class="archive-meta">
-            2018
-        </a>
-    </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/12/02/海量数据处理面试题六大套路/">
-                        海量数据处理面试题六大套路
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/12/02</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/25/MySQL索引失效/">
-                        MySQL索引失效
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">
-                        2018阿里巴巴在线编程题--将数组分割为和相等的三段
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">
-                        2018阿里巴巴在线编程题--输出最大时间和最小时间
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/22</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-        
-    </div>
-</section>
 
   
 
-  <div class="paginator">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a>
+  
+    <div class="post-reward">
+      <div id="reward-button">请杯咖啡呗~</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="2018/11/10/Linux下测试磁盘读写速度/"><span class="iconfont icon-left"></span>Linux下测试磁盘读写速度</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="2018/11/09/修改乱码文件名/">修改乱码文件名<span class="iconfont icon-right"></span></a>
+        
+    </div>
   </div>
-</div>
 
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="http://ligang945.github.io">ligang</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="http://ligang945.github.io/2018/11/09/你不了解的SVN/">http://ligang945.github.io/2018/11/09/你不了解的SVN/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="http://ligang945.github.io">ligang</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+</article>
         <footer>
           <div class="copyright">
             ©2019 <a href="http://ligang945.github.io">ligang</a>
@@ -417,7 +227,7 @@
             
           </div>
         </div>
-        
+          
       </div>
     </div>
     <!-- swiftype -->

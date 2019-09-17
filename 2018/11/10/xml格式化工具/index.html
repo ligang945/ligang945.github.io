@@ -10,7 +10,7 @@
     <meta name="description" content>
     
     <title>
-      Archives - A.T.Filed
+      xml格式化工具 - A.T.Filed
     </title>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -48,7 +48,7 @@
             Home
           </a>
             
-          <a href="javascript:void(0)" class="current">
+          <a href="/archives" class>
             Archives
           </a>
             
@@ -92,275 +92,107 @@
 
     <div id="container">
       <div class="main">
-        <div class="archives">
-    
-    
+        <article class="post-entry">
+    <div class="header">
+      <div class="title">xml格式化工具</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2018/11/10</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2018/11/10/xml格式化工具/" data-flag-title="xml格式化工具">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
 
-
-
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2019" class="archive-meta">
-            2019
-        </a>
+        
+        
+        
+      </div>
+      <div>
+      </div>
     </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/08/18/林深时见鹿/">
-                        林深时见鹿
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/08/18</span>
-                    </span>
-                    
+    <p>工作中有大量的xml配置文件，经常被人改的乱七八糟，作为强迫症患者，必须要把它整理整理~</p>
+<p>曾经用MFC写过一个，Windows下用起来是不错，Linux下就麻烦了，于是重写了一个命令行版本的，全部代码如下：</p>
+<pre><code>#include 
+#include &quot;tinyxml2.h&quot;
 
-                    
-                </div>
-            </div>
-        </article>
-        
+using namespace std;
+using namespace tinyxml2;
 
+int main(int argc, char *argv[])
+{
+    if (argc != 2) {
+        cout &lt;&lt; &quot;error: need input file&quot; &lt;&lt; endl;
+        return 0;
+    }
 
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/25/我最喜欢的电影/">
-                        我最喜欢的电影
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/25</span>
-                    </span>
-                    
+    XMLDocument doc(true, COLLAPSE_WHITESPACE);
+    doc.LoadFile(argv[1]);
+    doc.SaveFile(argv[1]);
+    cout &lt;&lt; &quot;beautified &quot; &lt;&lt; argv[1] &lt;&lt; endl;
+    return 0;
+}</code></pre><p>其实就是用tinyxml打开一次再保存就可以啦，利用了tinyxml可以自动整理格式的特性~</p>
+<hr>
+<p>by the way，写命令行程序比写MFC容易太多了，MFC需要写大量图形界面交互的代码，而核心代码其实没多少</p>
 
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/16/JNI调用两层C++动态库/">
-                        JNI调用两层C++动态库
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/16</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/06/12/时间管理/">
-                        时间管理
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/06/12</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/04/23/这些年/">
-                        这些年
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/04/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/02/15/node js调试的三种方法/">
-                        node js调试的三种方法
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/02/15</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-
-</div>
-</section>
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2018" class="archive-meta">
-            2018
-        </a>
-    </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/12/02/海量数据处理面试题六大套路/">
-                        海量数据处理面试题六大套路
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/12/02</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/25/MySQL索引失效/">
-                        MySQL索引失效
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">
-                        2018阿里巴巴在线编程题--将数组分割为和相等的三段
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">
-                        2018阿里巴巴在线编程题--输出最大时间和最小时间
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/22</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-        
-    </div>
-</section>
 
   
 
-  <div class="paginator">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a>
+  
+    <div class="post-reward">
+      <div id="reward-button">请杯咖啡呗~</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="2018/11/10/多进程完成批量任务/"><span class="iconfont icon-left"></span>多进程完成批量任务</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="2018/11/10/Linux下测试磁盘读写速度/">Linux下测试磁盘读写速度<span class="iconfont icon-right"></span></a>
+        
+    </div>
   </div>
-</div>
 
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="http://ligang945.github.io">ligang</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="http://ligang945.github.io/2018/11/10/xml格式化工具/">http://ligang945.github.io/2018/11/10/xml格式化工具/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="http://ligang945.github.io">ligang</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+</article>
         <footer>
           <div class="copyright">
             ©2019 <a href="http://ligang945.github.io">ligang</a>
@@ -417,7 +249,7 @@
             
           </div>
         </div>
-        
+          
       </div>
     </div>
     <!-- swiftype -->

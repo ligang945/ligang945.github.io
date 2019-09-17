@@ -10,7 +10,7 @@
     <meta name="description" content>
     
     <title>
-      Archives - A.T.Filed
+      多进程完成批量任务 - A.T.Filed
     </title>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -48,7 +48,7 @@
             Home
           </a>
             
-          <a href="javascript:void(0)" class="current">
+          <a href="/archives" class>
             Archives
           </a>
             
@@ -92,275 +92,136 @@
 
     <div id="container">
       <div class="main">
-        <div class="archives">
-    
-    
+        <article class="post-entry">
+    <div class="header">
+      <div class="title">多进程完成批量任务</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2018/11/10</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2018/11/10/多进程完成批量任务/" data-flag-title="多进程完成批量任务">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
 
-
-
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2019" class="archive-meta">
-            2019
-        </a>
+        
+        
+        
+      </div>
+      <div>
+      </div>
     </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/08/18/林深时见鹿/">
-                        林深时见鹿
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/08/18</span>
-                    </span>
-                    
+    <p>贴上一篇旧文，2015.05.14 我发表在部门周刊上的。</p>
+<hr>
+<p>工作中经常会遇到一类问题：使用tshark在1000个文件中过滤中出满足某些规则的数据；解压10000个压缩文件……</p>
+<p>完成这些任务通常是把相应的命令写在脚本中，然后执行脚本，自动完成。</p>
+<p>但是存在一个问题：通过脚本完成这些批量的任务，往往是串行的，一次执行一个任务，比较浪费时间，而服务器的性能也没有充分利用上。</p>
+<p>让任务在后台运行，可以实现多个任务同时执行，但是这样也有一个明显的问题：并发的任务量太大，并发任务间竞争激烈，反而耗时更长。</p>
+<p>能不能并发的完成这些任务，并能够控制并发的数量呢？</p>
+<p>使用python的进程池，可以轻松实现。</p>
+<p>代码如下：</p>
+<pre><code>#!/usr/bin/python
+from multiprocessing import Pool
+from optparse import OptionParser
+import os
 
-                    
-                </div>
-            </div>
-        </article>
-        
+&apos;&apos;&apos;excute cmds in cmd.txt
+&apos;&apos;&apos;
 
 
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/25/我最喜欢的电影/">
-                        我最喜欢的电影
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
+def excute_cmd(cmd, msg):
+    print(msg)
+    os.system(cmd)
 
 
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/16/JNI调用两层C++动态库/">
-                        JNI调用两层C++动态库
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/16</span>
-                    </span>
-                    
+if __name__ == &quot;__main__&quot;:
+    parser = OptionParser()
+    parser.add_option(&quot;-n&quot;, &quot;--nums&quot;, dest=&quot;pn&quot;, default=10, type=&quot;int&quot;, help=&quot;max nums of process&quot;, metavar=&quot;INT&quot;)
+    parser.add_option(&quot;-f&quot;, &quot;--file&quot;, dest=&quot;filename&quot;, default=&quot;cmds.txt&quot;, help=&quot;read cmds from FILE&quot;, metavar=&quot;FILE&quot;)
+    (options, args) = parser.parse_args()
 
-                    
-                </div>
-            </div>
-        </article>
-        
+    cmds = []
+    with open(options.filename, &apos;r&apos;) as f:
+        cmds = f.readlines()
 
+    pool = Pool(processes=options.pn)
+    nums = len(cmds)
+    for i in range(nums):
+        cmd = cmds[i].strip(&apos;\r\n&apos;)
+        msg = &apos;%d/%d: %s&apos; % (i + 1, nums, cmd)
+        pool.apply_async(excute_cmd, (cmd, msg))
+    pool.close()
+    pool.join()
 
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/06/12/时间管理/">
-                        时间管理
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/06/12</span>
-                    </span>
-                    
+    print(&quot;all process done.&quot;)</code></pre><p>用法如下：</p>
+<blockquote>
+<p>./muti_process.py -f cmds.txt -n 10</p>
+</blockquote>
+<p>这样将会多进程执行cmds.txt中的命令，进程数量最多为10。</p>
+<p>特点：</p>
+<ol>
+<li>这个脚本是跨平台的，windows和linux下都可以使用。</li>
+<li>这个脚本和具体执行的任务是无关的，只要将自己想要执行的命令写到文件中，使用这个脚本就可以批量执行了。</li>
+</ol>
 
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/04/23/这些年/">
-                        这些年
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/04/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/02/15/node js调试的三种方法/">
-                        node js调试的三种方法
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/02/15</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-
-</div>
-</section>
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2018" class="archive-meta">
-            2018
-        </a>
-    </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/12/02/海量数据处理面试题六大套路/">
-                        海量数据处理面试题六大套路
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/12/02</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/25/MySQL索引失效/">
-                        MySQL索引失效
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">
-                        2018阿里巴巴在线编程题--将数组分割为和相等的三段
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">
-                        2018阿里巴巴在线编程题--输出最大时间和最小时间
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/22</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-        
-    </div>
-</section>
 
   
 
-  <div class="paginator">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a>
+  
+    <div class="post-reward">
+      <div id="reward-button">请杯咖啡呗~</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="2018/11/10/JavaScript中的柯里化/"><span class="iconfont icon-left"></span>JavaScript中的柯里化</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="2018/11/10/xml格式化工具/">xml格式化工具<span class="iconfont icon-right"></span></a>
+        
+    </div>
   </div>
-</div>
 
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="http://ligang945.github.io">ligang</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="http://ligang945.github.io/2018/11/10/多进程完成批量任务/">http://ligang945.github.io/2018/11/10/多进程完成批量任务/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="http://ligang945.github.io">ligang</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+</article>
         <footer>
           <div class="copyright">
             ©2019 <a href="http://ligang945.github.io">ligang</a>
@@ -417,7 +278,7 @@
             
           </div>
         </div>
-        
+          
       </div>
     </div>
     <!-- swiftype -->

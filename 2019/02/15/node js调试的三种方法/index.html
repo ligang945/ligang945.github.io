@@ -10,7 +10,7 @@
     <meta name="description" content>
     
     <title>
-      Archives - A.T.Filed
+      node js调试的三种方法 - A.T.Filed
     </title>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -48,7 +48,7 @@
             Home
           </a>
             
-          <a href="javascript:void(0)" class="current">
+          <a href="/archives" class>
             Archives
           </a>
             
@@ -92,275 +92,105 @@
 
     <div id="container">
       <div class="main">
-        <div class="archives">
-    
-    
+        <article class="post-entry">
+    <div class="header">
+      <div class="title">node js调试的三种方法</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2019/02/15</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2019/02/15/node js调试的三种方法/" data-flag-title="node js调试的三种方法">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
 
-
-
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2019" class="archive-meta">
-            2019
-        </a>
+        
+        
+        
+      </div>
+      <div>
+      </div>
     </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/08/18/林深时见鹿/">
-                        林深时见鹿
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/08/18</span>
-                    </span>
-                    
+    <h3 id="1、类似GDB在命令行界面调试"><a href="#1、类似GDB在命令行界面调试" class="headerlink" title="1、类似GDB在命令行界面调试"></a>1、类似GDB在命令行界面调试</h3><p>执行命令：</p>
+<blockquote>
+<p>node debug helloword-debug.js</p>
+</blockquote>
+<p>就可以进入调试模式。</p>
+<p>界面和交互和GDB很像，梦回C++开发时代，哈哈，可以玩一下，但是没有图形界面，不怎么实用。</p>
+<p>参考资料：<a href="https://github.com/i5ting/node-debug-tutorial" target="_blank" rel="noopener">https://github.com/i5ting/node-debug-tutorial</a></p>
+<h3 id="2、在chrome调试界面调试"><a href="#2、在chrome调试界面调试" class="headerlink" title="2、在chrome调试界面调试"></a>2、在chrome调试界面调试</h3><p>很多旧的资料说需要安装node-inspector，其实不用了，安装还报错。我的node版本v10.15.0。</p>
+<p>执行命令：</p>
+<blockquote>
+<p>node –inspect-brk ./helloword-debug.js</p>
+</blockquote>
+<p>界面输出</p>
+<blockquote>
+<p>Debugger listening on ws://127.0.0.1:9229/12f2b3e6-f94c-42fe-8dfb-<br>7c68827b6f4d</p>
+</blockquote>
+<p>此时打开浏览器，输入<a href="http://127.0.0.1:9292，然后打开调试工具，点击node图标，就可以在浏览器里调试了。" target="_blank" rel="noopener">http://127.0.0.1:9292，然后打开调试工具，点击node图标，就可以在浏览器里调试了。</a></p>
+<p>参考资料：<a href="http://www.ruanyifeng.com/blog/2018/03/node-debugger.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/03/node-debugger.html</a></p>
+<h3 id="3、使用webstorm调试"><a href="#3、使用webstorm调试" class="headerlink" title="3、使用webstorm调试"></a>3、使用webstorm调试</h3><p>现在vs code很流行，用vs code调试也是可以的，但我还是喜欢JetBrains全家桶。</p>
+<p>使用起来比较简单，不赘述了。</p>
+<p>参考资料：<a href="https://www.cnblogs.com/jinguangguo/p/4809886.html" target="_blank" rel="noopener">https://www.cnblogs.com/jinguangguo/p/4809886.html</a></p>
 
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/25/我最喜欢的电影/">
-                        我最喜欢的电影
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/16/JNI调用两层C++动态库/">
-                        JNI调用两层C++动态库
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/16</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/06/12/时间管理/">
-                        时间管理
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/06/12</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/04/23/这些年/">
-                        这些年
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/04/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/02/15/node js调试的三种方法/">
-                        node js调试的三种方法
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/02/15</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-
-</div>
-</section>
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2018" class="archive-meta">
-            2018
-        </a>
-    </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/12/02/海量数据处理面试题六大套路/">
-                        海量数据处理面试题六大套路
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/12/02</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/25/MySQL索引失效/">
-                        MySQL索引失效
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">
-                        2018阿里巴巴在线编程题--将数组分割为和相等的三段
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">
-                        2018阿里巴巴在线编程题--输出最大时间和最小时间
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/22</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-        
-    </div>
-</section>
 
   
 
-  <div class="paginator">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a>
+  
+    <div class="post-reward">
+      <div id="reward-button">请杯咖啡呗~</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="2019/04/23/这些年/"><span class="iconfont icon-left"></span>这些年</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="2018/12/02/海量数据处理面试题六大套路/">海量数据处理面试题六大套路<span class="iconfont icon-right"></span></a>
+        
+    </div>
   </div>
-</div>
 
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="http://ligang945.github.io">ligang</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="http://ligang945.github.io/2019/02/15/node js调试的三种方法/">http://ligang945.github.io/2019/02/15/node js调试的三种方法/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="http://ligang945.github.io">ligang</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+</article>
         <footer>
           <div class="copyright">
             ©2019 <a href="http://ligang945.github.io">ligang</a>
@@ -417,7 +247,16 @@
             
           </div>
         </div>
-        
+         
+        <div class="toc-widget">
+          <div class="title">
+            <span>Toc</span>
+          </div>
+          <div class="post-toc">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、类似GDB在命令行界面调试"><span class="toc-text">1、类似GDB在命令行界面调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、在chrome调试界面调试"><span class="toc-text">2、在chrome调试界面调试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、使用webstorm调试"><span class="toc-text">3、使用webstorm调试</span></a></li></ol>
+          </div>
+        </div>
+         
       </div>
     </div>
     <!-- swiftype -->

@@ -10,7 +10,7 @@
     <meta name="description" content>
     
     <title>
-      Archives - A.T.Filed
+      JNI调用两层C++动态库 - A.T.Filed
     </title>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -48,7 +48,7 @@
             Home
           </a>
             
-          <a href="javascript:void(0)" class="current">
+          <a href="/archives" class>
             Archives
           </a>
             
@@ -92,275 +92,123 @@
 
     <div id="container">
       <div class="main">
-        <div class="archives">
-    
-    
+        <article class="post-entry">
+    <div class="header">
+      <div class="title">JNI调用两层C++动态库</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2019/07/16</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2019/07/16/JNI调用两层C++动态库/" data-flag-title="JNI调用两层C++动态库">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
 
-
-
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2019" class="archive-meta">
-            2019
-        </a>
+        
+        
+        
+      </div>
+      <div>
+      </div>
     </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/08/18/林深时见鹿/">
-                        林深时见鹿
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/08/18</span>
-                    </span>
-                    
+    <p>最近的Spark项目需要访问TSSD存储，由后台同学提供一个C++动态库，包含读写接口，然后我通过JNI包装so库，调用C++方法。</p>
+<p>在Spark中如何使用JNI调用C++动态库，这篇文章讲的很清楚了 <a href="http://icejoywoo.github.io/2018/07/25/spark-" target="_blank" rel="noopener">http://icejoywoo.github.io/2018/07/25/spark-</a><br>jni.html</p>
+<p>在后台同学给我提供so之前，我按照这篇文章实操了一遍，感觉问题不大，就把这项工作降低优先级，放一边了，等后台做完我稍微搞下就好了。</p>
+<p>然而拿到后台的动态库之后，才发现不太一样。</p>
+<hr>
+<p>常规使用JNI的方法的步骤如下：</p>
+<p>1、写一个Java类，包含native方法</p>
+<p>2、javah命令生成h文件，包含native方法的c++声明</p>
+<p>3、编写cpp，实现h文件的声明</p>
+<p>4、g++把h和cpp编译为动态库</p>
+<p>5、javac编译Java类，并执行，完毕</p>
+<p>其中h和cpp文件不是常规的c++代码，包含了一坨JNIEXPORT，JNICALL，JNIEnv等关键字。</p>
+<p>然而后台给我的so和h文件是已经写好的，并不是我生成的，没有那些关键字，也就意味着我不能直接使用。</p>
+<p>deadline快到了，我慌的一匹……</p>
+<hr>
+<p>冷静下来，思考了一下，解决方案有两个：</p>
+<p>1、我按照上述常规方法，生成h文件，让后台按照h文件实现cpp，然后编译为so给我。</p>
+<p>2、我生成h文件，自己编写cpp，对后台的so再封装一层，编译为so。我的Java应用调用我的so，我的so再调用后台的so。</p>
+<p>两个方案的优缺点比较：</p>
+<p>方案1</p>
+<p>1、后台同学只会c++，没玩过JNI。JNIEXPORT，JNICALL，JNIEnv这些关键字估计能给他搞蒙，deadline之前不一定能做完。</p>
+<p>2、我看似不用写cpp，省了些工作，但后台的编码、编译都需要我支持，沟通协作工作量也少不了。</p>
+<p>方案2</p>
+<p>1、我好多年没碰c++，语法忘差不多了。IDE，编译器也没有。</p>
+<p>2、JNI我也是第一次用，网上的教程都是包一层so的，包两层的没见过。具体有哪些坑不确定。</p>
+<p>至于耦合性方面，两种方案差不多。在接口不变的情况下，都不需要重新编译，接口改变的话，都需要重新编译。</p>
+<p>最终选择方案2，开干吧！</p>
+<hr>
+<p>过程中的辛酸泪就不说了……主要是在g++编译方面踩了大把的坑，什么编译错误，运行时找不到符号，段错误等等。</p>
+<p>最终参考这篇文章搞定了 <a href="https://blog.csdn.net/Maybe_Lee/article/details/78586198" target="_blank" rel="noopener">https://blog.csdn.net/Maybe_Lee/article/details/78586198</a></p>
+<p>最后回顾一下完整过程：</p>
+<p>1、后台的libtssd.so放入/usr/lib64中，省去设置环境变量，库路径的烦恼</p>
+<p>2、编写TssdUtil.java</p>
+<p>3、javah TssdUtil.java，生成TssdUtil.h</p>
+<p>4、编写TssdUtil.cpp，实现TssdUtil.h</p>
+<p>5、编译libtssdutil.so，依赖libtssd.so<br>      g++ -Wall /usr/lib64/libtssd.so TssdUtil.cpp -I/data/fk_package/jdk1.8.0_181/include -I/data/fk_package/jdk1.8.0_181/include/linux -I. -fPIC -shared -o libtssdutil.so</p>
+<p>6、libtssdutil.so放入/usr/lib64中</p>
+<p>7、编译并运行TssdUtil<br>      javac TssdUtil.java &amp;&amp; java TssdUtil</p>
+<p>最关键的就是步骤5</p>
 
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/25/我最喜欢的电影/">
-                        我最喜欢的电影
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/16/JNI调用两层C++动态库/">
-                        JNI调用两层C++动态库
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/16</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/06/12/时间管理/">
-                        时间管理
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/06/12</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/04/23/这些年/">
-                        这些年
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/04/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/02/15/node js调试的三种方法/">
-                        node js调试的三种方法
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/02/15</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-
-</div>
-</section>
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2018" class="archive-meta">
-            2018
-        </a>
-    </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/12/02/海量数据处理面试题六大套路/">
-                        海量数据处理面试题六大套路
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/12/02</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/25/MySQL索引失效/">
-                        MySQL索引失效
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">
-                        2018阿里巴巴在线编程题--将数组分割为和相等的三段
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">
-                        2018阿里巴巴在线编程题--输出最大时间和最小时间
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/22</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-        
-    </div>
-</section>
 
   
 
-  <div class="paginator">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a>
+  
+    <div class="post-reward">
+      <div id="reward-button">请杯咖啡呗~</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="2019/07/25/我最喜欢的电影/"><span class="iconfont icon-left"></span>我最喜欢的电影</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="2019/06/12/时间管理/">时间管理<span class="iconfont icon-right"></span></a>
+        
+    </div>
   </div>
-</div>
 
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="http://ligang945.github.io">ligang</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="http://ligang945.github.io/2019/07/16/JNI调用两层C++动态库/">http://ligang945.github.io/2019/07/16/JNI调用两层C++动态库/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="http://ligang945.github.io">ligang</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+</article>
         <footer>
           <div class="copyright">
             ©2019 <a href="http://ligang945.github.io">ligang</a>
@@ -417,7 +265,7 @@
             
           </div>
         </div>
-        
+          
       </div>
     </div>
     <!-- swiftype -->

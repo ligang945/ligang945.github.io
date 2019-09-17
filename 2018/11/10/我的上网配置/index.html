@@ -10,7 +10,7 @@
     <meta name="description" content>
     
     <title>
-      Archives - A.T.Filed
+      我的上网配置 - A.T.Filed
     </title>
     <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
@@ -48,7 +48,7 @@
             Home
           </a>
             
-          <a href="javascript:void(0)" class="current">
+          <a href="/archives" class>
             Archives
           </a>
             
@@ -92,275 +92,88 @@
 
     <div id="container">
       <div class="main">
-        <div class="archives">
-    
-    
+        <article class="post-entry">
+    <div class="header">
+      <div class="title">我的上网配置</div>
+      <div class="meta">
+        <span class="item">
+          <span class="iconfont icon-time-circle"></span>
+          <span>2018/11/10</span>
+        </span>
 
+        
+          <span class="item leancloud-visitors" id="/2018/11/10/我的上网配置/" data-flag-title="我的上网配置">
+            <span class="iconfont icon-eye1"></span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
 
-
-
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2019" class="archive-meta">
-            2019
-        </a>
+        
+        
+        
+      </div>
+      <div>
+      </div>
     </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/08/18/林深时见鹿/">
-                        林深时见鹿
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/08/18</span>
-                    </span>
-                    
+    <blockquote>
+<p>这里说的上网就是方便使用Google的那种上网啦，懂的自然懂，不懂的就算了~ ## 简化ssh登陆操作 #### 本机生成公钥密钥 本机敲ssh-<br>keygen命令，一顿回车，在<del>/.ssh目录下会生成id_rsa和id_rsa.pub文件。<br>id_rsa是私钥，要保存好，谁也不给谁看；id_rsa.pub是公钥，稍后放到VPS上。 #### VPS添加公钥<br>复制本机id_rsa.pub的内容，添加到VPS</del>/.ssh/authorized_keys文件中。 然后就可以 ssh <a href="mailto:root@1.2.3.4" target="_blank" rel="noopener">root@1.2.3.4</a> -p<br>5678 登陆到VPS了，不需要输入密码。 #### VPS别名 输入ssh <a href="mailto:root@1.2.3.4" target="_blank" rel="noopener">root@1.2.3.4</a> -p 5678登陆还是有点麻烦，继续配置。 在本机<br>~/.ssh/config 中添加以下内容： <figure class="highlight bash"><figcaption><span>Host vps HostName 1.2.3.4 Port 5678 User root</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">``` 然后直接 ssh vps 就可以登陆了，十分方便~ <span class="comment">## VPS软件 #### shadowsocks_libev</span></span><br><span class="line">我的VPS配置较低，所以选用C语言实现的shadowsocks_libev。 我用的是Teddysun的多合一shadowsocks-</span><br><span class="line">all.sh安装脚本，选择安装shadowsocks_libev。 安装完成后，再在根目录建一个配置文件的软连接： ```bash ln -s /etc</span><br><span class="line">/shadowsocks-libev/config.json ~ ``` 这样修改配置文件就方便一点，免得记不住配置文件路径~ <span class="comment">#### haproxy-</span></span><br><span class="line">lkl 我的VPS是OpenVZ虚拟化，不能升级内核，所以想用BBR算法只能另寻他法。 我用的是Teddysun的ovz-bbr-</span><br><span class="line">installer.sh脚本，一键安装haproxy-lkl。 <span class="comment">#### simple-obfs 按github主页说明安装。 在ss的配置文件中启用：</span></span><br><span class="line">```bash <span class="string">"plugin"</span>:<span class="string">"obfs-server"</span> <span class="string">"plugin_opts"</span>:<span class="string">"obfs=tls"</span> ``` <span class="comment">#### kcp</span></span><br><span class="line">曾经用过，两端配置都比较麻烦。现在有了BBR，网速对我来说足够了，就不再用kcp了。 <span class="comment">#### pip 通过apt安装： ```bash apt</span></span><br><span class="line">install python-pip -y ``` 然后更新一下自己： ```bash pip install pip -U --no-cache-dir</span><br><span class="line">``` <span class="comment">#### youtube-dl ```bash pip install youtube-dl -U --no-cache-dir</span></span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>有了它就可以愉快的下载Youtube视频了。 #### ffmpeg <figure class="highlight bash"><figcaption><span>apt install ffmpeg -y ``` 音频视频编解码器</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">，安装它是为了让youtube-dl能够合并视频和音频。 <span class="comment">## 软件更新 VPS保持软件更新很重要，不过经常敲命令也手疼，写个脚本保护一下手指：</span></span><br><span class="line">```bash apt update; apt full-upgrade -y; apt autoremove -y pip install</span><br><span class="line">youtube-dl -U --no-cache-dir</span><br></pre></td></tr></table></figure></p>
 
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/25/我最喜欢的电影/">
-                        我最喜欢的电影
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/07/16/JNI调用两层C++动态库/">
-                        JNI调用两层C++动态库
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/07/16</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/06/12/时间管理/">
-                        时间管理
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/06/12</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/04/23/这些年/">
-                        这些年
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/04/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2019/02/15/node js调试的三种方法/">
-                        node js调试的三种方法
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2019/02/15</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-
-</div>
-</section>
-
-
-<section class="wrap">
-    <div class="meta">
-        <a href="/archives/2018" class="archive-meta">
-            2018
-        </a>
-    </div>
-    <div class="year">
-        
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/12/02/海量数据处理面试题六大套路/">
-                        海量数据处理面试题六大套路
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/12/02</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/25/MySQL索引失效/">
-                        MySQL索引失效
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/25</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">
-                        2018阿里巴巴在线编程题--将数组分割为和相等的三段
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/23</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-
-
-        <article class="item">
-            
-            
-            <div class="content">
-                <div class="title">
-                    <a href="/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">
-                        2018阿里巴巴在线编程题--输出最大时间和最小时间
-                    </a>
-                </div>
-                <div class="meta">
-                    <span class="meta-item">
-                        <span class="iconfont icon-time-circle"></span>
-                        <span>2018/11/22</span>
-                    </span>
-                    
-
-                    
-                </div>
-            </div>
-        </article>
-        
-        
-    </div>
-</section>
 
   
 
-  <div class="paginator">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a>
+  
+    <div class="post-reward">
+      <div id="reward-button">请杯咖啡呗~</div>
+      <div id="qr">
+        <div class="wrap">
+            
+            <div class="bg-wrap">
+              <a href="/images/zhifubao.png" target="_block" class="bg" style="background-image:url('/images/zhifubao.png')"></a>
+              支付宝
+            </div>
+            
+            
+            <div class="bg-wrap">
+                <a href="/images/weixin.png" target="_block" class="bg" style="background-image:url('/images/weixin.png')"></a>
+              微信
+            </div>
+            
+        </div>
+      </div>
+    </div>
+  
+  
+  <div class="post-guide">
+    <div class="item left">
+        
+          <a href="2018/11/10/查找电脑里重复的照片/"><span class="iconfont icon-left"></span>查找电脑里重复的照片</a>
+        
+    </div>
+    <div class="item right">
+        
+          <a href="2018/11/10/JavaScript中的柯里化/">JavaScript中的柯里化<span class="iconfont icon-right"></span></a>
+        
+    </div>
   </div>
-</div>
 
+  
+
+  <div class="post-copyright">
+    <div class="auth">
+      本文作者：<a href="http://ligang945.github.io">ligang</a>
+    </div>
+    <div class="link">
+      永久链接：<a href="http://ligang945.github.io/2018/11/10/我的上网配置/">http://ligang945.github.io/2018/11/10/我的上网配置/</a>
+    </div>
+    <div class="declare">
+      版权声明：本文首发于<a href="http://ligang945.github.io">ligang</a>的博客，转载请注明出处！
+    </div>
+  </div>
+
+  <div id="comment"></div>
+</article>
         <footer>
           <div class="copyright">
             ©2019 <a href="http://ligang945.github.io">ligang</a>
@@ -417,7 +230,7 @@
             
           </div>
         </div>
-        
+          
       </div>
     </div>
     <!-- swiftype -->
