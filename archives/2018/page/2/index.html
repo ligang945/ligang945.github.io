@@ -351,12 +351,8 @@
                 <span>python检查xml格式正确性</span>
         </a>
         <div class="abstract-content">
-            有时帮同事定位问题，一顿分析之后才发现是同事修改xml配置文件，把文件格式改错了，解析失败导致的故障。
-低级错误浪费大量时间啊~
-一个简单的办法是把xml文件拖动到IE浏览器中打开，如果文件格式不正确的话，IE就会提示。
-然而有时文件在服务器上，导到Windows上，再用IE打开，还是略繁琐了一些，因此用python写了一段，来验证xml格式的正确性。
-不得不说，sax方式解析xml挺繁琐，但是用来验证xml还是出乎意料的简短。
-1234567891011121314151617181920import sysfrom xml.sax.handler import ContentHand...
+            <p>有时帮同事定位问题，一顿分析之后才发现是同事修改xml配置文件，把文件格式改错了，解析失败导致的故障。</p>
+<p>低级错误浪费大量时间啊~</p>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -385,10 +381,8 @@
                 <span>开启Spark history server</span>
         </a>
         <div class="abstract-content">
-            配置 spark-defaults.conf
-12345spark.eventLog.enabled             truespark.eventLog.dir                 file:///home/spark-2.1.1-bin-hadoop2.7/history_logspark.history.update.interval      1spark.history.retainedApplications 50spark.history.ui.port              18080
-然后启动
-1sbin/start-history-server...
+            <p>配置 spark-defaults.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">spark.eventLog.enabled             <span class="literal">true</span></span><br><span class="line">spark.eventLog.dir                 file:///home/spark-2.1.1-bin-hadoop2.7/history_log</span><br><span class="line">spark.history.update.interval      1</span><br><span class="line">spark.history.retainedApplications 50</span><br><span class="line">spark.history.ui.port              18080</span><br></pre></td></tr></table></figure>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -417,12 +411,11 @@
                 <span>python pip配置</span>
         </a>
         <div class="abstract-content">
-            Windows下和Linux配置文件路径不一样，感觉和git，bash的配置套路不太一致~~
-Windows：  C:\Users\genius\pip\pip.ini
-Linux      ：  ~/.pip/pip.conf
-使用清华大学的源，配置文件内容：
-1234[global]    index-url = https://pypi.tuna.tsinghua.edu.cn/simple[install]    trusted-host = mirrors.aliyun.com
-
+            <p>Windows下和Linux配置文件路径不一样，感觉和git，bash的配置套路不太一致~~</p>
+<p>Windows：  C:\Users\genius\pip\pip.ini</p>
+<p>Linux      ：  ~/.pip/pip.conf</p>
+<p>使用清华大学的源，配置文件内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">    index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">[install]</span><br><span class="line">    trusted-host = mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -451,10 +444,8 @@ Linux      ：  ~/.pip/pip.conf
                 <span>git冲突处理</span>
         </a>
         <div class="abstract-content">
-            以前用svn管理代码，图形界面使用TortoiseSVN，svn update出现冲突时，在log窗口点击右键就可以直接选择&quot;以自己的为准&quot;或&quot;以仓库的为准&quot;。
-切换到git后，苦于没有好用的图形工具（SmartGit还凑合），一直使用命令行，更新代码出现冲突时，没有上述两个选项，感觉很不习惯，于是自己写了两个小函数来实现上述功能。
-加入到~/.bash_profile就可以愉快的使用了，Windows，Linux都可以。
-1234567891011function resolve_conflict_using_mine &#123;    git...
+            <p>以前用svn管理代码，图形界面使用TortoiseSVN，svn update出现冲突时，在log窗口点击右键就可以直接选择&quot;以自己的为准&quot;或&quot;以仓库的为准&quot;。</p>
+<p>切换到git后，苦于没有好用的图形工具（SmartGit还凑合），一直使用命令行，更新代码出现冲突时，没有上述两个选项，感觉很不习惯，于是自己写了两个小函数来实现上述功能。</p>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -483,11 +474,9 @@ Linux      ：  ~/.pip/pip.conf
                 <span>批量将代码从GBK转为UTF-8</span>
         </a>
         <div class="abstract-content">
-            最近需要批量的将java代码从GBK编码转换为UTF-8编码。
-用Intellij IDEA转换太麻烦，自己写小工具又懒得写。
-想到Linux的iconv命令可以转换文件的格式，就在此基础上，写了个批量处理的函数：查找当前目录下所有的java代码文件，并转换格式。
-将这段函数加入到~/.bashrc中，就可以愉快的使用了。
-123456789function iconv_java_to_utf8 &#123;    for JAVA_FILE in $(find -name "*.java")    do        if [ "$(file $JAVA_FILE | grep -v ...
+            <p>最近需要批量的将java代码从GBK编码转换为UTF-8编码。</p>
+<p>用Intellij IDEA转换太麻烦，自己写小工具又懒得写。</p>
+<p>想到Linux的iconv命令可以转换文件的格式，就在此基础上，写了个批量处理的函数：查找当前目录下所有的java代码文件，并转换格式。</p>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -516,14 +505,9 @@ Linux      ：  ~/.pip/pip.conf
                 <span>vi配置文件</span>
         </a>
         <div class="abstract-content">
-            我的vi配置文件
-touch ~/.vimrc
-1234567891011colorscheme delekfiletype onsyntax onautocmd FileType c,cpp :set cindentset numberset history=100set autoindentset expandtabset tabstop=4set shiftwidth=4set showmatch
-vim自带的一些colors scheme，在/usr/share/vim/vim72/colors路径下：
-blue.vim
-default.vim
-desert_lg.vim
-elf...
+            <p>我的vi配置文件</p>
+<p>touch ~/.vimrc</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">colorscheme delek</span><br><span class="line">filetype on</span><br><span class="line">syntax on</span><br><span class="line">autocmd FileType c,cpp :<span class="built_in">set</span> cindent</span><br><span class="line"><span class="built_in">set</span> number</span><br><span class="line"><span class="built_in">set</span> <span class="built_in">history</span>=100</span><br><span class="line"><span class="built_in">set</span> autoindent</span><br><span class="line"><span class="built_in">set</span> expandtab</span><br><span class="line"><span class="built_in">set</span> tabstop=4</span><br><span class="line"><span class="built_in">set</span> shiftwidth=4</span><br><span class="line"><span class="built_in">set</span> showmatch</span><br></pre></td></tr></table></figure>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -552,13 +536,12 @@ elf...
                 <span>git配置文件</span>
         </a>
         <div class="abstract-content">
-            我的git配置文件，主要包括三部分：
-
-命令简写
-写日志的图形界面编辑器
-配置beyond compare 3做diff和merge
-
-123456789101112131415161718192021222324252627282930313233343536[alias]    co = checkout    ci = commit    st = status    br = branch    his = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short    type = cat-file -t ...
+            <p>我的git配置文件，主要包括三部分：</p>
+<ol>
+<li>命令简写</li>
+<li>写日志的图形界面编辑器</li>
+<li>配置beyond compare 3做diff和merge</li>
+</ol>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -658,6 +641,8 @@ elf...
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
@@ -1110,23 +1095,23 @@ elf...
     
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
-        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
-        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
-        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
+        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
     
         <span class="sidebar-tag-name" data-tags="电影"><span class="iconfont-archer">&#xe606;</span>电影</span>
     
-        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
     
         <span class="sidebar-tag-name" data-tags="情绪"><span class="iconfont-archer">&#xe606;</span>情绪</span>
     

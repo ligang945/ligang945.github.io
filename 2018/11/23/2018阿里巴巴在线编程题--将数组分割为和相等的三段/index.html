@@ -405,6 +405,7 @@ height:80vh;
 <p>问存不存在这样的两个位置？</p>
 <p>注意两个位置上的数字不属于任何一段，要求时间复杂度为O(n)。</p>
 </blockquote>
+<a id="more"></a>
 <p>用双循环的话，可以很容易的做到，但是时间复杂度是O(n2)，不满足要求。可以利用前缀和、后缀和的概念来解决。</p>
 <p>用Java实现了一下，代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> leetcode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PreSum</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arr = &#123;<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">7</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 后缀和的Map，降低查找的时间复杂度</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        HashMap&lt;Integer, Integer&gt; suffixSumMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = arr.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            sum += arr[i];</span><br><span class="line">            suffixSumMap.put(sum, i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 前缀和</span></span><br><span class="line">        <span class="keyword">int</span> prefixSum = arr[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            prefixSum += arr[i];</span><br><span class="line">            <span class="keyword">if</span> (suffixSumMap.keySet().contains(prefixSum)) &#123;</span><br><span class="line">                <span class="keyword">int</span> m = i + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> n = suffixSumMap.get(prefixSum) - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span> (prefixSum * <span class="number">3</span> == sum - arr[m] - arr[n]) &#123;</span><br><span class="line">                    System.out.println(<span class="string">"subSum: "</span> + prefixSum);</span><br><span class="line">                    System.out.println(<span class="string">"bound1: "</span> + m);</span><br><span class="line">                    System.out.println(<span class="string">"bound2: "</span> + n);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(<span class="string">"finish~~"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -423,8 +424,8 @@ finish~~</p>
             <p>原文作者：<a href="http://ligang945.github.io">ligang</a>
             <p>原文链接：<a href="http://ligang945.github.io/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">http://ligang945.github.io/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/</a>
             <p>发表日期：<a href="http://ligang945.github.io/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">November 23rd 2018, 4:49:00 am</a>
-            <p>更新日期：<a href="http://ligang945.github.io/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">September 27th 2019, 3:30:32 pm</a>
-            <p>版权声明：All rights reserved. 未经许可 不得转载</p>
+            <p>更新日期：<a href="http://ligang945.github.io/2018/11/23/2018阿里巴巴在线编程题--将数组分割为和相等的三段/">September 27th 2019, 5:01:33 pm</a>
+            <p>版权声明：All Rights Reserved. 未经许可 不得转载</p>
         </div>
     
     <!-- paginator  -->
@@ -554,6 +555,8 @@ top:80vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
@@ -1006,23 +1009,23 @@ top:80vh;
     
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
-        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
-        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
-        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
+        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
     
         <span class="sidebar-tag-name" data-tags="电影"><span class="iconfont-archer">&#xe606;</span>电影</span>
     
-        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
     
         <span class="sidebar-tag-name" data-tags="情绪"><span class="iconfont-archer">&#xe606;</span>情绪</span>
     

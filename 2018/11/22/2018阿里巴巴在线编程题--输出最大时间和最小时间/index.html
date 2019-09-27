@@ -414,6 +414,7 @@ height:80vh;
 <p>输出：</p>
 <p>时间无效</p>
 </blockquote>
+<a id="more"></a>
 <p>看着有点意思，就自己做了一遍，输出格式自己美化了一下，没有严格按照题目要求。代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_min_in_range</span><span class="params">(l, lb, ub)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> lb &gt; l[<span class="number">-1</span>] <span class="keyword">or</span> ub &lt; l[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> l[:]:</span><br><span class="line">        <span class="keyword">if</span> x &gt;= lb:</span><br><span class="line">            l.remove(x)</span><br><span class="line">            <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_max_in_range</span><span class="params">(l, lb, ub)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> ub &lt; l[<span class="number">-1</span>] <span class="keyword">or</span> lb &gt; l[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> l[:]:</span><br><span class="line">            <span class="keyword">if</span> x &lt;= ub:</span><br><span class="line">                l.remove(x)</span><br><span class="line">                <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line">    l0 = [<span class="number">3</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">9</span>, <span class="number">9</span>]</span><br><span class="line">    <span class="comment"># l0 = [9, 5, 1, 7, 4, 2, 9, 9]</span></span><br><span class="line">    </span><br><span class="line">l1 = l0[:]</span><br><span class="line">l1.sort()</span><br><span class="line"></span><br><span class="line">l2 = l1[:]</span><br><span class="line">l2.reverse()</span><br><span class="line"></span><br><span class="line">min_h0 = find_min_in_range(l1, <span class="number">0</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">if</span> min_h0 == <span class="number">2</span>:</span><br><span class="line">min_h1 = find_min_in_range(l1, <span class="number">0</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">min_h1 = find_min_in_range(l1, <span class="number">0</span>, <span class="number">9</span>)</span><br><span class="line"></span><br><span class="line">min_m0 = find_min_in_range(l1, <span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">min_m1 = find_min_in_range(l1, <span class="number">0</span>, <span class="number">9</span>)</span><br><span class="line"></span><br><span class="line">min_s0 = find_min_in_range(l1, <span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">min_s1 = find_min_in_range(l1, <span class="number">0</span>, <span class="number">9</span>)</span><br><span class="line"></span><br><span class="line">max_h0 = find_max_in_range(l2, <span class="number">0</span>, <span class="number">2</span>)</span><br><span class="line"><span class="keyword">if</span> max_h0 == <span class="number">2</span>:</span><br><span class="line">max_h1 = find_max_in_range(l2, <span class="number">0</span>, <span class="number">3</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">max_h1 = find_max_in_range(l2, <span class="number">0</span>, <span class="number">9</span>)</span><br><span class="line"></span><br><span class="line">max_m0 = find_max_in_range(l2, <span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">max_m1 = find_max_in_range(l2, <span class="number">0</span>, <span class="number">9</span>)</span><br><span class="line"></span><br><span class="line">max_s0 = find_max_in_range(l2, <span class="number">0</span>, <span class="number">5</span>)</span><br><span class="line">max_s1 = find_max_in_range(l2, <span class="number">0</span>, <span class="number">9</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="number">-1</span> <span class="keyword">in</span> [min_h0, min_h1, min_m0, min_m1, min_s0, min_s1, max_h0, max_h1, max_m0, max_m1, max_s0, max_s1]:</span><br><span class="line">    print(<span class="string">'invalid data'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"min clock: %s%s:%s%s:%s%s"</span> % (min_h0, min_h1, min_m0, min_m1, min_s0, min_s1))</span><br><span class="line">    print(<span class="string">"max clock: %s%s:%s%s:%s%s"</span> % (max_h0, max_h1, max_m0, max_m1, max_s0, max_s1))</span><br></pre></td></tr></table></figure>
 <p>输出：</p>
@@ -429,8 +430,8 @@ max clock: 23:59:49</p>
             <p>原文作者：<a href="http://ligang945.github.io">ligang</a>
             <p>原文链接：<a href="http://ligang945.github.io/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">http://ligang945.github.io/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/</a>
             <p>发表日期：<a href="http://ligang945.github.io/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">November 22nd 2018, 10:45:00 am</a>
-            <p>更新日期：<a href="http://ligang945.github.io/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">September 27th 2019, 3:38:12 pm</a>
-            <p>版权声明：All rights reserved. 未经许可 不得转载</p>
+            <p>更新日期：<a href="http://ligang945.github.io/2018/11/22/2018阿里巴巴在线编程题--输出最大时间和最小时间/">September 27th 2019, 5:03:09 pm</a>
+            <p>版权声明：All Rights Reserved. 未经许可 不得转载</p>
         </div>
     
     <!-- paginator  -->
@@ -560,6 +561,8 @@ top:80vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
@@ -1012,23 +1015,23 @@ top:80vh;
     
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
-        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
-        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
-        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
+        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
     
         <span class="sidebar-tag-name" data-tags="电影"><span class="iconfont-archer">&#xe606;</span>电影</span>
     
-        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
     
         <span class="sidebar-tag-name" data-tags="情绪"><span class="iconfont-archer">&#xe606;</span>情绪</span>
     

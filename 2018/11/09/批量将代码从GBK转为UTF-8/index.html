@@ -400,6 +400,7 @@ height:80vh;
         <p>最近需要批量的将java代码从GBK编码转换为UTF-8编码。</p>
 <p>用Intellij IDEA转换太麻烦，自己写小工具又懒得写。</p>
 <p>想到Linux的iconv命令可以转换文件的格式，就在此基础上，写了个批量处理的函数：查找当前目录下所有的java代码文件，并转换格式。</p>
+<a id="more"></a>
 <p>将这段函数加入到~/.bashrc中，就可以愉快的使用了。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> iconv_java_to_utf8 &#123;</span><br><span class="line">    <span class="keyword">for</span> JAVA_FILE <span class="keyword">in</span> $(find -name <span class="string">"*.java"</span>)</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">"<span class="variable">$(file $JAVA_FILE | grep -v UTF-8)</span>"</span> != <span class="string">""</span> ] ;<span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> convert <span class="variable">$JAVA_FILE</span></span><br><span class="line">            iconv -f GBK -t UTF-8 <span class="variable">$JAVA_FILE</span> -o <span class="variable">$JAVA_FILE</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <br>
@@ -410,8 +411,8 @@ height:80vh;
             <p>原文作者：<a href="http://ligang945.github.io">ligang</a>
             <p>原文链接：<a href="http://ligang945.github.io/2018/11/09/批量将代码从GBK转为UTF-8/">http://ligang945.github.io/2018/11/09/批量将代码从GBK转为UTF-8/</a>
             <p>发表日期：<a href="http://ligang945.github.io/2018/11/09/批量将代码从GBK转为UTF-8/">November 9th 2018, 6:57:00 am</a>
-            <p>更新日期：<a href="http://ligang945.github.io/2018/11/09/批量将代码从GBK转为UTF-8/">September 27th 2019, 3:33:44 pm</a>
-            <p>版权声明：All rights reserved. 未经许可 不得转载</p>
+            <p>更新日期：<a href="http://ligang945.github.io/2018/11/09/批量将代码从GBK转为UTF-8/">September 27th 2019, 5:04:11 pm</a>
+            <p>版权声明：All Rights Reserved. 未经许可 不得转载</p>
         </div>
     
     <!-- paginator  -->
@@ -541,6 +542,8 @@ top:80vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
@@ -993,23 +996,23 @@ top:80vh;
     
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
-        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
-        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
-        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
+        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
     
         <span class="sidebar-tag-name" data-tags="电影"><span class="iconfont-archer">&#xe606;</span>电影</span>
     
-        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
     
         <span class="sidebar-tag-name" data-tags="情绪"><span class="iconfont-archer">&#xe606;</span>情绪</span>
     

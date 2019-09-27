@@ -351,23 +351,21 @@
                 <span>2018阿里巴巴在线编程题--输出最大时间和最小时间</span>
         </a>
         <div class="abstract-content">
-            在其他博客上看到一道 “2018阿里巴巴在线编程题”
-
-我记得题目大概是这样的：输入数据n（n&gt;=6）代表n个数，从0-9任意输入n个数，然后在n个数选出6个数xx-xx-xx表示 时：分：秒，求出最小时间和最大时间，若时间无效，则输出时间无效，例如：
-输入：
-6
-6 5 4 3 2 1
-输出：
-123456 235641
-
-输入：
-6
-9 9 9 9 9 9
-输出：
-时间无效
-
-看着有点意思，就自己做了一遍，输出格式自己美化了一下，没有严格按照题目要求。代码如下：
-1234567891011121314151617181920212223242526272829303132333...
+            <p>在其他博客上看到一道 “<a href="https://blog.csdn.net/IT_BOY__/article/details/79461752" target="_blank" rel="noopener">2018阿里巴巴在线编程题</a>”</p>
+<blockquote>
+<p>我记得题目大概是这样的：输入数据n（n&gt;=6）代表n个数，从0-9任意输入n个数，然后在n个数选出6个数xx-xx-xx表示 时：分：秒，求出最小时间和最大时间，若时间无效，则输出时间无效，例如：</p>
+<p>输入：</p>
+<p>6</p>
+<p>6 5 4 3 2 1</p>
+<p>输出：</p>
+<p>123456 235641</p>
+<br>
+<p>输入：</p>
+<p>6</p>
+<p>9 9 9 9 9 9</p>
+<p>输出：</p>
+<p>时间无效</p>
+</blockquote>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -398,14 +396,13 @@
                 <span>修改乱码文件名</span>
         </a>
         <div class="abstract-content">
-            在公共服务器上，有时会出现一些文件名是乱码的文件，不知道哪位大神同事搞出来的~
-作为一个强迫症患者，必须要把它的名字改回来。然而试了各种办法，都失败了…
-
-在shell里mv，然后tab自动补上文件名，再空格，新的文件名，回车，执行失败
-用winscp登上去，图形界面里修改，依然失败
-
-只好写了一段python代码来重命名，也是醉了~
-123456789101112131415import osimport os.pathfile_dir = '/path/something_has_a_bad_name'command = ''for parent, dirnames, filenam...
+            <p>在公共服务器上，有时会出现一些文件名是乱码的文件，不知道哪位大神同事搞出来的~</p>
+<p>作为一个强迫症患者，必须要把它的名字改回来。然而试了各种办法，都失败了…</p>
+<ul>
+<li>在shell里mv，然后tab自动补上文件名，再空格，新的文件名，回车，执行失败</li>
+<li>用winscp登上去，图形界面里修改，依然失败</li>
+</ul>
+<p>只好写了一段python代码来重命名，也是醉了~</p>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -434,12 +431,8 @@
                 <span>python检查xml格式正确性</span>
         </a>
         <div class="abstract-content">
-            有时帮同事定位问题，一顿分析之后才发现是同事修改xml配置文件，把文件格式改错了，解析失败导致的故障。
-低级错误浪费大量时间啊~
-一个简单的办法是把xml文件拖动到IE浏览器中打开，如果文件格式不正确的话，IE就会提示。
-然而有时文件在服务器上，导到Windows上，再用IE打开，还是略繁琐了一些，因此用python写了一段，来验证xml格式的正确性。
-不得不说，sax方式解析xml挺繁琐，但是用来验证xml还是出乎意料的简短。
-1234567891011121314151617181920import sysfrom xml.sax.handler import ContentHand...
+            <p>有时帮同事定位问题，一顿分析之后才发现是同事修改xml配置文件，把文件格式改错了，解析失败导致的故障。</p>
+<p>低级错误浪费大量时间啊~</p>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -468,12 +461,11 @@
                 <span>python pip配置</span>
         </a>
         <div class="abstract-content">
-            Windows下和Linux配置文件路径不一样，感觉和git，bash的配置套路不太一致~~
-Windows：  C:\Users\genius\pip\pip.ini
-Linux      ：  ~/.pip/pip.conf
-使用清华大学的源，配置文件内容：
-1234[global]    index-url = https://pypi.tuna.tsinghua.edu.cn/simple[install]    trusted-host = mirrors.aliyun.com
-
+            <p>Windows下和Linux配置文件路径不一样，感觉和git，bash的配置套路不太一致~~</p>
+<p>Windows：  C:\Users\genius\pip\pip.ini</p>
+<p>Linux      ：  ~/.pip/pip.conf</p>
+<p>使用清华大学的源，配置文件内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">    index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">[install]</span><br><span class="line">    trusted-host = mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -502,18 +494,12 @@ Linux      ：  ~/.pip/pip.conf
                 <span>多进程完成批量任务</span>
         </a>
         <div class="abstract-content">
-            工作中经常会遇到一类问题：
-
-使用tshark在1000个文件中过滤中出满足某些规则的数据
-解压10000个压缩文件
-
-完成这些任务通常是把相应的命令写在脚本中，然后执行脚本，自动完成。
-但是存在一个问题：通过脚本完成这些批量的任务，往往是串行的，一次执行一个任务，比较浪费时间，而服务器的性能也没有充分利用上。
-让任务在后台运行，可以实现多个任务同时执行，但是这样也有一个明显的问题：并发的任务量太大，并发任务间竞争激烈，反而耗时更长。
-能不能并发的完成这些任务，并能够控制并发的数量呢？
-使用python的进程池，可以轻松实现。
-代码如下：
-123456789101112131415161...
+            <p>工作中经常会遇到一类问题：</p>
+<ul>
+<li>使用tshark在1000个文件中过滤中出满足某些规则的数据</li>
+<li>解压10000个压缩文件</li>
+</ul>
+<p>完成这些任务通常是把相应的命令写在脚本中，然后执行脚本，自动完成。</p>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -609,6 +595,8 @@ Linux      ：  ~/.pip/pip.conf
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
@@ -1061,23 +1049,23 @@ Linux      ：  ~/.pip/pip.conf
     
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
-        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
-        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
-        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
+        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
     
         <span class="sidebar-tag-name" data-tags="电影"><span class="iconfont-archer">&#xe606;</span>电影</span>
     
-        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
     
         <span class="sidebar-tag-name" data-tags="情绪"><span class="iconfont-archer">&#xe606;</span>情绪</span>
     

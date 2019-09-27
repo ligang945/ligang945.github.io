@@ -398,6 +398,7 @@ height:80vh;
             <main class="main post-page">
     <article class="article-entry">
         <p>我的个人电脑里最占空间的就是电影和照片了，照片整理来整理去，存在不少重复的，就想着能不能写段代码找到那些重复的照片。</p>
+<a id="more"></a>
 <p>原理比较简单粗暴，就是遍历所有的照片，计算MD5，MD5一样的就是重复的~</p>
 <p>用Java写的，顺便练习一下Java~</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.commons.codec.digest.DigestUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.commons.io.FileUtils;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.Collection;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String PHOTO_PATH = <span class="string">"D:\\照片"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String[] extensions = &#123;<span class="string">"jpg"</span>&#125;;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> HashMap&lt;String, File&gt; hashMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        Collection files = FileUtils.listFiles(</span><br><span class="line">                <span class="keyword">new</span> File(PHOTO_PATH), extensions, <span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">for</span> (File file : files) &#123;</span><br><span class="line">            FileInputStream fis = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">            String md5 = DigestUtils.md5Hex(fis);</span><br><span class="line">            checkSame(md5, file);</span><br><span class="line">            fis.close();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"Job done!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">checkSame</span><span class="params">(String md5, File file)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (hashMap.containsKey(md5)) &#123;</span><br><span class="line">            System.out.println(String.format(<span class="string">"%-150s"</span>,</span><br><span class="line">                    hashMap.get(md5).getAbsolutePath())</span><br><span class="line">                    + <span class="string">" -- "</span> + file.getAbsolutePath());</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            hashMap.put(md5, file);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -411,8 +412,8 @@ height:80vh;
             <p>原文作者：<a href="http://ligang945.github.io">ligang</a>
             <p>原文链接：<a href="http://ligang945.github.io/2018/11/10/查找电脑里重复的照片/">http://ligang945.github.io/2018/11/10/查找电脑里重复的照片/</a>
             <p>发表日期：<a href="http://ligang945.github.io/2018/11/10/查找电脑里重复的照片/">November 10th 2018, 2:27:00 pm</a>
-            <p>更新日期：<a href="http://ligang945.github.io/2018/11/10/查找电脑里重复的照片/">September 27th 2019, 3:30:51 pm</a>
-            <p>版权声明：All rights reserved. 未经许可 不得转载</p>
+            <p>更新日期：<a href="http://ligang945.github.io/2018/11/10/查找电脑里重复的照片/">September 27th 2019, 5:02:54 pm</a>
+            <p>版权声明：All Rights Reserved. 未经许可 不得转载</p>
         </div>
     
     <!-- paginator  -->
@@ -542,6 +543,8 @@ top:80vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
@@ -994,23 +997,23 @@ top:80vh;
     
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
-        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
-        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
-        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
+        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
     
         <span class="sidebar-tag-name" data-tags="电影"><span class="iconfont-archer">&#xe606;</span>电影</span>
     
-        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
     
         <span class="sidebar-tag-name" data-tags="情绪"><span class="iconfont-archer">&#xe606;</span>情绪</span>
     

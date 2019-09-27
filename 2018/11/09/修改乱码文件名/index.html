@@ -404,6 +404,7 @@ height:80vh;
 <li>用winscp登上去，图形界面里修改，依然失败</li>
 </ul>
 <p>只好写了一段python代码来重命名，也是醉了~</p>
+<a id="more"></a>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> os.path</span><br><span class="line"></span><br><span class="line">file_dir = <span class="string">'/path/something_has_a_bad_name'</span></span><br><span class="line"></span><br><span class="line">command = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> parent, dirnames, filenames <span class="keyword">in</span> os.walk(file_dir):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> filename <span class="keyword">in</span> filenames:</span><br><span class="line">    filename_new = <span class="string">'good_name.cap'</span></span><br><span class="line">    os.rename(file_dir + <span class="string">'/'</span> + filename, file_dir + <span class="string">'/'</span> + filename_new)</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'good_job!'</span>)</span><br></pre></td></tr></table></figure>
 
     </article>
@@ -413,8 +414,8 @@ height:80vh;
             <p>原文作者：<a href="http://ligang945.github.io">ligang</a>
             <p>原文链接：<a href="http://ligang945.github.io/2018/11/09/修改乱码文件名/">http://ligang945.github.io/2018/11/09/修改乱码文件名/</a>
             <p>发表日期：<a href="http://ligang945.github.io/2018/11/09/修改乱码文件名/">November 9th 2018, 2:45:00 pm</a>
-            <p>更新日期：<a href="http://ligang945.github.io/2018/11/09/修改乱码文件名/">September 27th 2019, 3:35:33 pm</a>
-            <p>版权声明：All rights reserved. 未经许可 不得转载</p>
+            <p>更新日期：<a href="http://ligang945.github.io/2018/11/09/修改乱码文件名/">September 27th 2019, 5:05:31 pm</a>
+            <p>版权声明：All Rights Reserved. 未经许可 不得转载</p>
         </div>
     
     <!-- paginator  -->
@@ -544,6 +545,8 @@ top:80vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
@@ -996,23 +999,23 @@ top:80vh;
     
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
-        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
-    
         <span class="sidebar-tag-name" data-tags="Linux"><span class="iconfont-archer">&#xe606;</span>Linux</span>
     
         <span class="sidebar-tag-name" data-tags="mysql"><span class="iconfont-archer">&#xe606;</span>mysql</span>
     
-        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
+        <span class="sidebar-tag-name" data-tags="git"><span class="iconfont-archer">&#xe606;</span>git</span>
     
-        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+        <span class="sidebar-tag-name" data-tags="vi"><span class="iconfont-archer">&#xe606;</span>vi</span>
     
         <span class="sidebar-tag-name" data-tags="C++"><span class="iconfont-archer">&#xe606;</span>C++</span>
     
-        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
+        <span class="sidebar-tag-name" data-tags="SVN"><span class="iconfont-archer">&#xe606;</span>SVN</span>
+    
+        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
     
         <span class="sidebar-tag-name" data-tags="电影"><span class="iconfont-archer">&#xe606;</span>电影</span>
     
-        <span class="sidebar-tag-name" data-tags="Spark"><span class="iconfont-archer">&#xe606;</span>Spark</span>
+        <span class="sidebar-tag-name" data-tags="Shell"><span class="iconfont-archer">&#xe606;</span>Shell</span>
     
         <span class="sidebar-tag-name" data-tags="情绪"><span class="iconfont-archer">&#xe606;</span>情绪</span>
     
