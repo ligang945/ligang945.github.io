@@ -1,40 +1,40 @@
 # ========== Profile ========== #
 # avatar
-avatar: /avatar/Misaka.jpg
+avatar: /avatar/shinji.jpeg
 # author name
-author: fi3ework
+author: ligang
 # signature
-signature: witness me
+signature: YOU SHALL NOT PASS
 # SNS (you can custom the order)
 social:
-  email: 12345@qq.com
-  github: //github.com/fi3ework
+  # email: 12345@qq.com
+  # github: //github.com/fi3ework
   # wechat should be a path of qr-code image path
-  wechat: /assets/example_qr.png
+  # wechat: /assets/example_qr.png
   # qq should be a path of qr-code image path
-  qq: 
-  telegram: 
-  weibo: 
-  zhihu: 
-  douban: 
-  facebook: 
-  twitter: 
-  instagram: 
-  stack-overflow: 
-  segmentFault: 
-  juejin: 
-  v2ex: 
-  bilibili: 
-  linkedin: 
-  steam: 
-  others: 
-  rss: 
+  # qq: 
+  # telegram: 
+  # weibo: 
+  # zhihu: 
+  # douban: 
+  # facebook: 
+  # twitter: 
+  # instagram: 
+  # stack-overflow: 
+  # segmentFault: 
+  # juejin: 
+  # v2ex: 
+  # bilibili: 
+  # linkedin: 
+  # steam: 
+  # others: 
+  # rss: 
 # friends
 friends:
   # friendA: //www.baidu.com
   # friendB: //www.google.com
 about:
-  enable: true
+  enable: false
   image: '/intro/about-bg.jpg'
 # Search for website
 search:
@@ -62,18 +62,18 @@ profile_links:
 
 # ========== Site ========== #
 # title of the site (good for SEO)
-SEO_title: fi3ework's Studio
+SEO_title: A.T.Field
 # keywords for site (good for SEO)
 SEO_keywords:
   - hexo
   - 'hexo-theme'
   - 'hexo-blog'
 # main title shown in header image
-main_title: fi3ework's Studio.
+main_title: A.T.Field
 # subtitle
-subtitle: it's better to burn out than to fade away
+subtitle: Our integrity sells for so little, but it is all we really have.
 # site haeder image
-site_header_image: '/intro/index-bg.jpg'
+site_header_image: '/intro/jami_vs_dragon_2.jpg'
 # post haeder image
 post_header_image: '/intro/post-bg.jpg'
 # 404 image
