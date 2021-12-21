@@ -1,13 +1,12 @@
-
-A.T.Field
-批量将代码从GBK转为UTF-8
-A.T.Field
-批量将代码从GBK转为UTF-8
-Shell
-
-2018/11/09
- 4
- Share
+---
+title: 批量将代码从GBK转为UTF-8
+date: 2018-11-09 19:51:10
+tags:
+- 分享
+- Shell
+categories: 代码
+---
+
 最近需要批量的将java代码从GBK编码转换为UTF-8编码。
 
 用Intellij IDEA转换太麻烦，自己写小工具又懒得写。
@@ -16,15 +15,7 @@ Shell
 
 将这段函数加入到~/.bashrc中，就可以愉快的使用了。
 
-1
-2
-3
-4
-5
-6
-7
-8
-9
+```shell
 function iconv_java_to_utf8 {
     for JAVA_FILE in $(find -name "*.java")
     do
@@ -34,21 +25,4 @@ function iconv_java_to_utf8 {
         fi
     done
 }
-
-原文作者：ligang
-
-原文链接：http://ligang945.github.io/2018/11/09/批量将代码从GBK转为UTF-8/
-
-发表日期：November 9th 2018, 6:57:00 am
-
-更新日期：September 27th 2019, 5:04:11 pm
-
-版权声明：All Rights Reserved. 未经许可 不得转载
-
-Next Post
-git冲突处理
-Previous Post
-vi配置文件
-Powered by Hexotheme Archer
-PV: 142 :)
-
+```

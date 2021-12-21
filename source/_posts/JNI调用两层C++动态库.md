@@ -1,13 +1,10 @@
-
-A.T.Field
-JNI调用两层C++动态库
-A.T.Field
-JNI调用两层C++动态库
-JNI
-
-2019/07/16
- 3
- Share
+---
+title: JNI调用两层C++动态库
+date: 2019-07-16 19:51:10
+tags: JNI
+categories: 代码
+---
+
 最近的Spark项目需要访问TSSD存储，由后台同学提供一个 C++ 动态库，包含读写接口，然后我通过JNI包装so库，调用C++方法。
 
 在Spark中如何使用JNI调用C++动态库，这篇文章讲的很清楚了 http://icejoywoo.github.io/2018/07/25/spark-jni.html
@@ -42,17 +39,17 @@ deadline快到了，我慌的一匹……
 
 两个方案的优缺点比较：
 
-方案1
+- 方案1
 
-1、后台同学只会c++，没玩过JNI。JNIEXPORT，JNICALL，JNIEnv这些关键字估计能给他搞蒙，deadline之前不一定能做完。
+    1、后台同学只会c++，没玩过JNI。JNIEXPORT，JNICALL，JNIEnv这些关键字估计能给他搞蒙，deadline之前不一定能做完。
 
-2、我看似不用写cpp，省了些工作，但后台的编码、编译都需要我支持，沟通协作工作量也少不了。
+    2、我看似不用写cpp，省了些工作，但后台的编码、编译都需要我支持，沟通协作工作量也少不了。
 
-方案2
+- 方案2
 
-1、我好多年没碰c++，语法忘差不多了。IDE，编译器也没有。
+    1、我好多年没碰c++，语法忘差不多了。IDE，编译器也没有。
 
-2、JNI我也是第一次用，网上的教程都是包一层so的，包两层的没见过。具体有哪些坑不确定。
+    2、JNI我也是第一次用，网上的教程都是包一层so的，包两层的没见过。具体有哪些坑不确定。
 
 至于耦合性方面，两种方案差不多。在接口不变的情况下，都不需要重新编译，接口改变的话，都需要重新编译。
 
@@ -83,21 +80,3 @@ g++ -Wall /usr/lib64/libtssd.so TssdUtil.cpp -I/data/fk_package/jdk1.8.0_181/inc
 javac TssdUtil.java && java TssdUtil
 
 最关键的就是步骤5
-
-原文作者：ligang
-
-原文链接：http://ligang945.github.io/2019/07/16/JNI调用两层C++动态库/
-
-发表日期：July 16th 2019, 7:49:00 am
-
-更新日期：September 27th 2019, 5:07:11 pm
-
-版权声明：All Rights Reserved. 未经许可 不得转载
-
-Next Post
-我最喜欢的电影
-Previous Post
-node js调试的三种方法
-Powered by Hexotheme Archer
-PV: 133 :)
-

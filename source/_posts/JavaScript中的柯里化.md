@@ -1,13 +1,10 @@
-
-A.T.Field
-JavaScript中的柯里化
-A.T.Field
-JavaScript中的柯里化
-JavaScript
-
-2018/11/10
-
- Share
+---
+title: JavaScript中的柯里化
+date: 2018-11-10 19:51:10
+tags: JavaScript
+categories: 代码
+---
+
 今天在博客园首页看到一篇好文章 【译】理解JavaScript中的柯里化
 
 加上最近工作中的一些感悟，算是对函数式编程语言（scala, python, javascrtpt）中的闭包，偏函数、柯里化有了更进一步的认识。
@@ -26,50 +23,34 @@ JavaScript
 
 定义一个流速转换函数：
 
-1
-2
-3
-4
-5
+
+```javascript
 function flowVelocityFormater(base, power) {
     return function(v) {
         return (v / Math.pow(base, power)).toFixed(2);
     }
 }
+```
+
 在此基础上，得到几个基本的转换函数：
 
-1
-2
+```javascript
 var bps2Gbps = flowVelocityFormater(1000, 9);
 var Kbps2Gbps =  flowVelocityFormater(1000, 6);
+```
+
 实际转换时就可以使用
 
-1
+```javascript
 newValue = bps2Gbps(value);
+```
 语义简洁清晰多了。
 
 未来有一天，单位转换需要按1024而不是1000转换时，也只需要修改
 
-1
+```javascript
 bps2Gbps = flowVelocityFormater(1024, 9);
+```
 即可，或者定义一个新的函数。代码的维护性大大增强。
 
 函数式编程还是蛮爽的~
-
-原文作者：ligang
-
-原文链接：http://ligang945.github.io/2018/11/10/JavaScript中的柯里化/
-
-发表日期：November 10th 2018, 11:08:00 am
-
-更新日期：September 27th 2019, 5:05:04 pm
-
-版权声明：All Rights Reserved. 未经许可 不得转载
-
-Next Post
-我的上网配置
-Previous Post
-xml格式化工具
-Powered by Hexotheme Archer
-PV: :)
-
