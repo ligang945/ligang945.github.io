@@ -1,7 +1,9 @@
 ---
 title: MySQL索引失效
 date: 2018-11-25 19:51:10
-tags: mysql
+tags: 
+- MySQL
+- 面试
 categories: 代码
 ---
 

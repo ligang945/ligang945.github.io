@@ -1,7 +1,9 @@
 ---
 title: nick
 date: 2007-05-16 19:51:10
-tags: 情绪
+tags: 
+- 情绪
+- 意识流
 categories: 学生时代
 ---
 

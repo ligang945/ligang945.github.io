@@ -1,7 +1,9 @@
 ---
 title: vi配置文件
 date: 2018-11-04 19:51:10
-tags: vi
+tags: 
+- vi
+- 配置
 categories: 代码
 ---
 

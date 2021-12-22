@@ -1,7 +1,9 @@
 ---
 title: git冲突处理
 date: 2018-11-09 19:51:10
-tags: git
+tags: 
+- git
+- shell
 categories: 代码
 ---
 

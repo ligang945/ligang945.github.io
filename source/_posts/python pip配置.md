@@ -1,7 +1,9 @@
 ---
 title: python pip配置
 date: 2018-11-09 19:51:10
-tags: python
+tags: 
+- python
+- 配置
 categories: 代码
 ---
 

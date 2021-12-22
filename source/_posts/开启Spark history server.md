@@ -1,7 +1,7 @@
 ---
 title: 开启Spark history server
 date: 2018-11-09 19:51:10
-tags: 分享
+tags: 配置
 categories: 代码
 ---
 

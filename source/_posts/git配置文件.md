@@ -1,7 +1,10 @@
 ---
 title: git配置文件
 date: 2018-11-04 19:51:10
-tags: git
+tags: 
+- git
+- shell
+- 配置
 categories: 代码
 ---
 
