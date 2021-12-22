@@ -11,7 +11,7 @@ categories: 代码
 
 `touch ~/.vimrc`
 
-```shell
+```bash
 colorscheme delek
 filetype on
 syntax on
@@ -27,7 +27,7 @@ set showmatch
 
 vim自带的一些colors scheme，在/usr/share/vim/vim72/colors路径下：
 
-```shell
+```bash
 blue.vim
 default.vim
 desert_lg.vim

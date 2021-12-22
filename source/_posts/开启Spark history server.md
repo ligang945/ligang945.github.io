@@ -7,7 +7,7 @@ categories: 代码
 
 配置 spark-defaults.conf
 
-```shell
+```bash
 spark.eventLog.enabled             true
 spark.eventLog.dir                 file:///home/spark-2.1.1-bin-hadoop2.7/history_log
 spark.history.update.interval      1
@@ -16,6 +16,6 @@ spark.history.ui.port              18080
 ```
 然后启动
 
-```shell
+```bash
 sbin/start-history-server.sh /home/spark-2.1.1-bin-hadoop2.7/history_log
 ```

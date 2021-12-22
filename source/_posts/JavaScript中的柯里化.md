@@ -5,7 +5,7 @@ tags: JavaScript
 categories: 代码
 ---
 
-今天在博客园首页看到一篇好文章 【译】理解JavaScript中的柯里化
+今天在博客园首页看到一篇好文章 [【译】理解JavaScript中的柯里化](https://www.cnblogs.com/GeniusLyzh/p/9937829.html)
 
 加上最近工作中的一些感悟，算是对函数式编程语言（scala, python, javascrtpt）中的闭包，偏函数、柯里化有了更进一步的认识。
 

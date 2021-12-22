@@ -7,19 +7,19 @@ categories: 代码
 
 1.测/目录所在磁盘的纯写速度：
 
-```shell
+```bash
 time dd if=/dev/zero bs=1024 count=1000000 of=/1Gb.file
 ```
 
 2.测/目录所在磁盘的纯读速度：
 
-```shell
+```bash
 time dd if=/1Gb.file bs=64k |dd of=/dev/null
 ```
 
 3.测读写速度：
 
-```shell
+```bash
 time dd if=/1Gb.file of=/data0/2.Gb.file bs=64k
 ```
 

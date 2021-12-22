@@ -14,7 +14,7 @@ categories: 代码
 写日志的图形界面编辑器
 配置`beyond compare 3`做diff和merge
 
-```shell
+```bash
 [alias]
     co = checkout
     ci = commit

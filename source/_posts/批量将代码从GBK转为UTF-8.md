@@ -14,7 +14,7 @@ categories: 代码
 
 将这段函数加入到~/.bashrc中，就可以愉快的使用了。
 
-```shell
+```bash
 function iconv_java_to_utf8 {
     for JAVA_FILE in $(find -name "*.java")
     do

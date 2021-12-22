@@ -16,7 +16,7 @@ Linux ： `~/.pip/pip.conf`
 使用清华大学的源，配置文件内容：
 
 
-```shell
+```bash
 [global]
     index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 [install]

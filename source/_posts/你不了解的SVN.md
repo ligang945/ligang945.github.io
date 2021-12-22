@@ -24,7 +24,7 @@ TortoiseSVN并不等同于SVN。
 ### 我常用的某个目录中包含一个与我关联不大的目录，而且它经常更新，文件内容很多很大，这真的不是我想要的。
 首先，问题的根源在于目录结构划分的不合理。在你解决这个问题之前，你可以使用其它方法来回避。
 
-```shell
+```bash
 svn update --set-depth exclude biiiiigFolder
 ```
 
@@ -32,14 +32,14 @@ svn update --set-depth exclude biiiiigFolder
 
 取消这种设定，使用
 
-```shell
+```bash
 svn update --set-depth infinity
 ```
 
 ### 我不喜欢把代码mount到服务器上，因此我在服务器上保留了一份工作副本，几天前我做了一些修改，但是我现在忘了我修改了哪些文件，怎么办？
 如果出现这种情况，你很可能编译出一个不是你想要的版本，进而可能给你带来一些未知的、莫名其妙的bug，浪费你的时间。一个简单的命令将会解决这个问题。
 
-```shell
+```bash
 svn status
 ```
 
@@ -47,13 +47,13 @@ svn status
 
 接下来，你可以使用
 
-```shell
+```bash
 svn diff filename
 ```
 
 来查看这些修改是不是你想要的，然后使用
 
-```shell
+```bash
 svn revert filename
 ```
 
@@ -64,20 +64,20 @@ svn revert filename
 ### 我需要回到几周之前的版本上去定位某个问题，可是我除了svn update一无所知，我该怎么办？
 事实上，svn update已经足够了，你只需要再加上一个参数。
 
-```shell
+```bash
 svn update –r 123
 ```
 
 ### 我现在的版本号是10001，我想要查看某个文件在版本号101和1001时的差异，难道我需要下载两个工作副本，并分别回退到101和1001再比较吗？
 这样的场景想想都让人抓狂，幸运的是，你不必这样做。
 
-```shell
+```bash
 svn diff –r 101:1001 omg.cpp
 ```
 
 什么感觉？恍然大悟+不过如此？如果你在windows下设置了外部比较工具，
 
-```shell
+```bash
 SET DIFF3=“C:\Program Files\FunkyStuff\My Merge Tool.exe”
 ```
 
@@ -89,7 +89,7 @@ SET DIFF3=“C:\Program Files\FunkyStuff\My Merge Tool.exe”
 这份工作副本是你从其他人那里拷贝过来的，鉴权文件不一致。你不应该这样做，删除它自己check out吧。
 上次的SVN操作中断了，工作拷贝中遗留的日志文件中还有部分工作拷贝锁。这时只需使用清理命令即可。
 
-```shell
+```bash
 svn cleanup
 ```
 
@@ -98,13 +98,13 @@ svn cleanup
 
 svn在设计上并不鼓励加锁，因此并非管理员才可以解除锁定，任何用户只需要使用
 
-```shell
+```bash
 svn unlock –f filename
 ```
 
 就可以打破锁定。你甚至可以使用
 
-```shell
+```bash
 svn lock –f filename
 ```
 

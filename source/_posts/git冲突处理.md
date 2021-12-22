@@ -14,7 +14,7 @@ categories: 代码
 加入到`~/.bash_profile`就可以愉快的使用了，Windows，Linux都可以。
 
 
-```shell
+```bash
 function resolve_conflict_using_mine {
     git status --porcelain | egrep '^UU' | cut -d ' ' -f 2 | xargs git checkout --theirs
     git add -A
@@ -22,7 +22,7 @@ function resolve_conflict_using_mine {
 }
 ```
     
-```shell
+```bash
 function resolve_conflict_using_theirs {
     git status --porcelain | egrep '^UU' | cut -d ' ' -f 2 | xargs git checkout --ours
     git add -A
@@ -47,15 +47,15 @@ work that is being rebased.
 使用merge而不是rebase的同学，可以使用下面的函数。
 
 
-```shell
+```bash
 function resolve_conflict_using_mine {
     git status --porcelain | egrep '^UU' | cut -d ' ' -f 2 | xargs git checkout --ours
     git add -A
     git merge --continue
 }
-```    
-
-```shell
+```
+    
+```bash
 function resolve_conflict_using_theirs {
     git status --porcelain | egrep '^UU' | cut -d ' ' -f 2 | xargs git checkout --theirs
     git add -A
