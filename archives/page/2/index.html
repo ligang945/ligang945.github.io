@@ -428,6 +428,47 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2019/07/16/JNI%E8%B0%83%E7%94%A8%E4%B8%A4%E5%B1%82C++%E5%8A%A8%E6%80%81%E5%BA%93/">
+                
+                <span class="abstract-title-text">JNI调用两层C++动态库</span>
+            </a>
+            <div class="abstract-content">
+                最近的Spark项目需要访问TSSD存储，由后台同学提供一个 C++ 动态库，包含读写接口，然后我通过JNI包装so库，调用C++方法。
+在Spark中如何使用JNI调用C++动态库，这篇文章讲的很清楚了 http://icejoywoo.github.io/2018/07/25/spark-jni.html
+在后台同学给我提供so之前，我按照这篇文章实操了一遍，感觉问题不大，就把这项工作降低优先级，放一边了，等后台做完我稍微搞下就好了。
+然而拿到后台的动态库之后，才发现不太一样。
+常规使用 JNI 的方法的步骤如下：
+1、写一个Java类，包含native方法
+2、javah命令生成h...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2025/08/31">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/07/16</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JNI">JNI</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2019/02/15/node%20js%E8%B0%83%E8%AF%95%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">
                 
                 <span class="abstract-title-text">node js调试的三种方法</span>
@@ -806,44 +847,6 @@ VPS别名输入ssh root@1.2.3.4 -p 5678登陆...
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2018/11/10/%E6%9F%A5%E6%89%BE%E7%94%B5%E8%84%91%E9%87%8C%E9%87%8D%E5%A4%8D%E7%9A%84%E7%85%A7%E7%89%87/">
-                
-                <span class="abstract-title-text">查找电脑里重复的照片</span>
-            </a>
-            <div class="abstract-content">
-                我的个人电脑里最占空间的就是电影和照片了，照片整理来整理去，存在不少重复的，就想着能不能写段代码找到那些重复的照片。
-原理比较简单粗暴，就是遍历所有的照片，计算MD5，MD5一样的就是重复的~
-用Java写的，顺便练习一下Java~
-12345678910111213141516171819202122232425262728293031323334353637import org.apache.commons.codec.digest.DigestUtils;import org.apache.commons.io.FileUtils;import java.io.File;impor...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2025/08/31">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/10</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="代码">代码</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1099,7 +1102,24 @@ VPS别名输入ssh root@1.2.3.4 -p 5678登陆...
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1452,7 +1472,7 @@ VPS别名输入ssh root@1.2.3.4 -p 5678登陆...
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 42
+        Total : 43
         </div>
         <!-- search  -->
         
@@ -1462,6 +1482,21 @@ VPS别名输入ssh root@1.2.3.4 -p 5678登陆...
     
         
             
+            
+            <div class="archive-year"> 2025 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/22</span>
+            <a class="archive-post-title" href="/2025/08/22/Someone%20Like%20You/">Someone Like You</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
             
             <div class="archive-year"> 2023 </div>
             <ul class="year-list">
