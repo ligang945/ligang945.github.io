@@ -443,6 +443,46 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2018/11/10/%E6%88%91%E7%9A%84%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE/">
+                
+                <span class="abstract-title-text">我的上网配置</span>
+            </a>
+            <div class="abstract-content">
+                这里说的上网就是方便使用Google的那种上网啦，懂的自然懂，不懂的就算了~
+简化ssh登陆操作本机生成公钥密钥本机敲ssh-keygen命令，一顿回车，在~/.ssh目录下会生成id_rsa和id_rsa.pub文件。
+id_rsa是私钥，要保存好，谁也不给谁看；id_rsa.pub是公钥，稍后放到VPS上。
+VPS添加公钥复制本机id_rsa.pub的内容，添加到VPS的~/.ssh/authorized_keys文件中。
+然后就可以 ssh root@1.2.3.4 -p 5678 登陆到VPS了，不需要输入密码。
+VPS别名输入ssh root@1.2.3.4 -p 5678登陆...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2025/08/31">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/11/10</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Linux">Linux</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2018/11/10/%E6%9F%A5%E6%89%BE%E7%94%B5%E8%84%91%E9%87%8C%E9%87%8D%E5%A4%8D%E7%9A%84%E7%85%A7%E7%89%87/">
                 
                 <span class="abstract-title-text">查找电脑里重复的照片</span>
@@ -794,54 +834,6 @@ vim自带的一些colors scheme，在/usr/share/vim/vim72/colors路径下：
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2015/05/14/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%AE%8C%E6%88%90%E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1/">
-                
-                <span class="abstract-title-text">多进程完成批量任务</span>
-            </a>
-            <div class="abstract-content">
-                工作中经常会遇到一类问题：
-
-使用tshark在1000个文件中过滤中出满足某些规则的数据
-
-
-解压10000个压缩文件
-
-完成这些任务通常是把相应的命令写在脚本中，然后执行脚本，自动完成。
-但是存在一个问题：通过脚本完成这些批量的任务，往往是串行的，一次执行一个任务，比较浪费时间，而服务器的性能也没有充分利用上。
-让任务在后台运行，可以实现多个任务同时执行，但是这样也有一个明显的问题：并发的任务量太大，并发任务间竞争激烈，反而耗时更长。
-能不能并发的完成这些任务，并能够控制并发的数量呢？
-使用python的进程池，可以轻松实现。
-代码如下：
-1234567891011121314151...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2025/08/31">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2015/05/14</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1118,7 +1110,24 @@ vim自带的一些colors scheme，在/usr/share/vim/vim72/colors路径下：
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1483,7 +1492,7 @@ vim自带的一些colors scheme，在/usr/share/vim/vim72/colors路径下：
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 43
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1497,6 +1506,12 @@ vim自带的一些colors scheme，在/usr/share/vim/vim72/colors路径下：
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/02</span>
+            <a class="archive-post-title" href="/2025/11/02/EVA%E7%BB%88%E7%AB%A0/">EVA终章</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">08/22</span>
@@ -1978,6 +1993,16 @@ vim自带的一些colors scheme，在/usr/share/vim/vim72/colors路径下：
             <span class="sidebar-tag-name" data-tags="游记">
                 <span class="iconfont-archer">&#xe606;</span>
                 游记
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="EVA">
+                <span class="iconfont-archer">&#xe606;</span>
+                EVA
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="青春">
+                <span class="iconfont-archer">&#xe606;</span>
+                青春
             </span>
         
     </div>

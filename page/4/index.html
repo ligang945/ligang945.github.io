@@ -443,6 +443,54 @@
             
         
         <article class="index-post">
+            <a class="abstract-title" href="/2015/05/14/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E5%AE%8C%E6%88%90%E6%89%B9%E9%87%8F%E4%BB%BB%E5%8A%A1/">
+                
+                <span class="abstract-title-text">多进程完成批量任务</span>
+            </a>
+            <div class="abstract-content">
+                工作中经常会遇到一类问题：
+
+使用tshark在1000个文件中过滤中出满足某些规则的数据
+
+
+解压10000个压缩文件
+
+完成这些任务通常是把相应的命令写在脚本中，然后执行脚本，自动完成。
+但是存在一个问题：通过脚本完成这些批量的任务，往往是串行的，一次执行一个任务，比较浪费时间，而服务器的性能也没有充分利用上。
+让任务在后台运行，可以实现多个任务同时执行，但是这样也有一个明显的问题：并发的任务量太大，并发任务间竞争激烈，反而耗时更长。
+能不能并发的完成这些任务，并能够控制并发的数量呢？
+使用python的进程池，可以轻松实现。
+代码如下：
+1234567891011121314151...
+            </div>
+            <!-- read more -->
+            
+            <div class="abstract-post-meta">
+                <!-- date -->
+                <div class="abstract-date" title="Last updated: 2025/08/31">
+                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2015/05/14</span>
+                </div>
+                <!-- tags -->
+                
+                    <div class= abstract-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="python">python</a>
+    
+</div>
+
+                
+            </div>
+        </article>
+        <div class="index-post-divider"></div>
+    
+        
+        
+        
+        
+            
+        
+        <article class="index-post">
             <a class="abstract-title" href="/2013/08/06/%E4%BD%A0%E4%B8%8D%E4%BA%86%E8%A7%A3%E7%9A%84SVN/">
                 
                 <span class="abstract-title-text">你不了解的SVN</span>
@@ -814,47 +862,6 @@ nick吓了一跳，坐起来看着四周，在他四周都是这样的墙，围�
         </article>
         <div class="index-post-divider"></div>
     
-        
-        
-        
-        
-            
-        
-        <article class="index-post">
-            <a class="abstract-title" href="/2006/10/29/%E5%A5%BD%E5%A5%BD%E7%94%9F%E6%B4%BB/">
-                
-                <span class="abstract-title-text">好好生活</span>
-            </a>
-            <div class="abstract-content">
-                有一天镜子，我真的不敢相信镜子里的人是我，头发乱得像稻草，油得像汉奸；又黑又瘦，弯腰驼背；双目无神，一点活力都没有。
-我真是不好意思说我有多邋遢。
-我不知道自己多久洗一次澡，也懒得换衣服，毫不夸张得说，我的外套一年没有换，虽然比较脏，但还没有破——比我的裤子幸运，由于我长期不换裤子，已经先后有三条裤子被我穿破，而这使我不得不换裤子。是不是很龌龊？
-我以前可不是这样。
-上初中的时候，就开始在学校住，那时才11岁，每个星期回一次家，换一次衣服（夏天例外），生活挺有规律的。
-15岁时到市里上高中，每个月回一次家，还是听妈妈的话，每个星期换一次衣服，然后自己洗。已经成了习惯，也不会去想为什么。
-...
-            </div>
-            <!-- read more -->
-            
-            <div class="abstract-post-meta">
-                <!-- date -->
-                <div class="abstract-date" title="Last updated: 2025/08/31">
-                    <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2006/10/29</span>
-                </div>
-                <!-- tags -->
-                
-                    <div class= abstract-tags >
-    
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="情绪">情绪</a>
-    
-</div>
-
-                
-            </div>
-        </article>
-        <div class="index-post-divider"></div>
-    
     <!-- paginator  -->
     
         <nav class="page-nav">
@@ -1131,7 +1138,24 @@ nick吓了一跳，坐起来看着四周，在他四周都是这样的墙，围�
         
         
         
+        
+        
+        
+        
+        
     
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         
         
@@ -1496,7 +1520,7 @@ nick吓了一跳，坐起来看着四周，在他四周都是这样的墙，围�
     
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 43
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1510,6 +1534,12 @@ nick吓了一跳，坐起来看着四周，在他四周都是这样的墙，围�
             <div class="archive-year"> 2025 </div>
             <ul class="year-list">
             
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/02</span>
+            <a class="archive-post-title" href="/2025/11/02/EVA%E7%BB%88%E7%AB%A0/">EVA终章</a>
+        </li>
+    
         
         <li class="archive-post-item">
             <span class="archive-post-date">08/22</span>
@@ -1991,6 +2021,16 @@ nick吓了一跳，坐起来看着四周，在他四周都是这样的墙，围�
             <span class="sidebar-tag-name" data-tags="游记">
                 <span class="iconfont-archer">&#xe606;</span>
                 游记
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="EVA">
+                <span class="iconfont-archer">&#xe606;</span>
+                EVA
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="青春">
+                <span class="iconfont-archer">&#xe606;</span>
+                青春
             </span>
         
     </div>
