@@ -158,10 +158,10 @@ comment:
 # ========== Analytics ========== #
 # enable Busuanzi analytics
 busuanzi: true
-# fill in pv or uv
-busuanzi_pv_or_uv: 'pv'
+# fill in pv or uv (set to 'both' to show both pv and uv, 'pv' for page view only, 'uv' for unique visitor only)
+busuanzi_pv_or_uv: 'both'
 # custom analytic slogan, '${count}' is the analytic number, DO NOT modify it.
-busuanzi_slug: 'PV: ${count} :)'
+busuanzi_slug: 'PV: ${count} | UV: ${uv}'
 # Baidu analytics
 baidu_analytics: 
 # Google analytics
