@@ -7,8 +7,6 @@
   width: $profile-width;
   font: 1rem $feature-font-family;
   color: $social-iconfont-color;
-  // 为了在没有social和friends时也显示一个分割线
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   a {
     transition: color 0.1s ease-in;
   }
@@ -117,7 +115,8 @@
 }
 
 .profile-item-icon {
-  margin-right: 0.3rem;
+  margin-right: 0.4rem;
+  width: 1.2rem !important;
 }
 
 .about-me {
