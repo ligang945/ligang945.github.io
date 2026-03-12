@@ -1,4 +1,145 @@
 <main class="main post-page">
+    <!-- Music Player (Before Content) -->
+    <%_ if (page.music && page.music.enable) { _%>
+        <div id="post-music-player" style="margin-bottom: 20px;"></div>
+        <style>
+            /* APlayer Theme Transitions - match Archer theme speed */
+            #post-music-player.aplayer,
+            #post-music-player.aplayer .aplayer-list,
+            #post-music-player.aplayer .aplayer-list ol li,
+            #post-music-player.aplayer .aplayer-info .aplayer-music .aplayer-title,
+            #post-music-player.aplayer .aplayer-info .aplayer-music .aplayer-author,
+            #post-music-player.aplayer .aplayer-info .aplayer-controller .aplayer-time,
+            #post-music-player.aplayer .aplayer-lrc p,
+            #post-music-player.aplayer .aplayer-icon path {
+                transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, fill 0.6s ease, box-shadow 0.6s ease !important;
+            }
+            /* APlayer Light Theme (Default) */
+            #post-music-player.aplayer {
+                background: #fff !important;
+                box-shadow: 0 2px 2px 0 rgba(0,0,0,.07), 0 1px 5px 0 rgba(0,0,0,.1) !important;
+                border-radius: 4px;
+            }
+            #post-music-player.aplayer .aplayer-info .aplayer-music .aplayer-title,
+            #post-music-player.aplayer .aplayer-info .aplayer-music .aplayer-author {
+                color: #666 !important;
+            }
+            #post-music-player.aplayer .aplayer-info .aplayer-controller .aplayer-time {
+                color: #999 !important;
+            }
+            #post-music-player.aplayer .aplayer-list {
+                background: #fff !important;
+                border-radius: 0 0 4px 4px;
+            }
+            #post-music-player.aplayer .aplayer-list ol li {
+                color: #666 !important;
+                border-top: 1px solid #e9e9e9 !important;
+            }
+            #post-music-player.aplayer .aplayer-list ol li:hover {
+                background: #efefef !important;
+            }
+            #post-music-player.aplayer .aplayer-list ol li.aplayer-list-light {
+                background: #e9e9e9 !important;
+            }
+            #post-music-player.aplayer .aplayer-lrc p {
+                color: #666 !important;
+            }
+            #post-music-player.aplayer .aplayer-lrc p.aplayer-lrc-current {
+                color: #333 !important;
+            }
+            /* APlayer Dark Theme */
+            #post-music-player.aplayer.aplayer-dark {
+                background: #2d2d2d !important;
+                box-shadow: 0 2px 2px 0 rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.3) !important;
+            }
+            #post-music-player.aplayer.aplayer-dark .aplayer-info .aplayer-music .aplayer-title,
+            #post-music-player.aplayer.aplayer-dark .aplayer-info .aplayer-music .aplayer-author {
+                color: #ccc !important;
+            }
+            #post-music-player.aplayer.aplayer-dark .aplayer-info .aplayer-controller .aplayer-time {
+                color: #aaa !important;
+            }
+            #post-music-player.aplayer.aplayer-dark .aplayer-list {
+                background: #2d2d2d !important;
+            }
+            #post-music-player.aplayer.aplayer-dark .aplayer-list ol li {
+                color: #ccc !important;
+                border-top: 1px solid #404040 !important;
+            }
+            #post-music-player.aplayer.aplayer-dark .aplayer-list ol li:hover {
+                background: #3d3d3d !important;
+            }
+            #post-music-player.aplayer.aplayer-dark .aplayer-list ol li.aplayer-list-light {
+                background: #404040 !important;
+            }
+            #post-music-player.aplayer.aplayer-dark .aplayer-lrc p {
+                color: #aaa !important;
+            }
+            #post-music-player.aplayer.aplayer-dark .aplayer-lrc p.aplayer-lrc-current {
+                color: #fff !important;
+            }
+            #post-music-player.aplayer.aplayer-dark .aplayer-icon path {
+                fill: #ccc !important;
+            }
+            #post-music-player.aplayer.aplayer-dark .aplayer-icon:hover path {
+                fill: #fff !important;
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof APlayer !== 'undefined') {
+                    const playerContainer = document.getElementById('post-music-player');
+                    
+                    // Check if dark mode is active
+                    const isDarkMode = () => document.querySelector('#stylesheet-theme-dark') !== null;
+                    
+                    // Update player theme class and APlayer theme color
+                    const updateTheme = () => {
+                        const dark = isDarkMode();
+                        if (dark) {
+                            playerContainer.classList.add('aplayer-dark');
+                        } else {
+                            playerContainer.classList.remove('aplayer-dark');
+                        }
+                        // Update APlayer theme color
+                        if (ap && ap.setTheme) {
+                            ap.setTheme(dark ? '#5a8bc7' : '#b7daff');
+                        }
+                    };
+                    
+                    // Initialize APlayer with current theme
+                    const ap = new APlayer({
+                        container: playerContainer,
+                        fixed: false,
+                        mini: false,
+                        theme: isDarkMode() ? '#5a8bc7' : '#b7daff',
+                        audio: [{
+                            name: '<%= page.music.title || "Unknown" %>',
+                            artist: '<%= page.music.artist || "Unknown" %>',
+                            url: '<%= page.music.url %>',
+                            cover: '<%= page.music.cover || "" %>'
+                        }],
+                        autoplay: <%= page.music.autoplay || false %>,
+                        preload: 'metadata'
+                    });
+                    
+                    // Apply initial theme
+                    updateTheme();
+                    
+                    // Listen for theme switch by observing head element changes
+                    const observer = new MutationObserver(function(mutations) {
+                        mutations.forEach(function(mutation) {
+                            if (mutation.type === 'childList') {
+                                updateTheme();
+                            }
+                        });
+                    });
+                    
+                    observer.observe(document.head, { childList: true, subtree: false });
+                }
+            });
+        </script>
+    <%_ } _%>
     <article class="article-entry">
         <%- page.content %>
     </article>
@@ -80,4 +221,5 @@
     <%_ if (page.mathjax === true) { _%>
         <%- partial('_partial/math/mathjax') %>
     <%_ } _%>
+
 </main>
