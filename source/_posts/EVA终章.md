@@ -6,6 +6,14 @@ tags:
 - 青春
 categories: 生活
 header_image: /intro/eva.webp
+# 文章音乐播放器配置
+music:
+  enable: true
+  title: "One Last Kiss"
+  artist: "宇多田ヒカル"
+  url: "https://disk.sample.cat/samples/mp3/suzume_no_tojimari.mp3"
+  cover: "/intro/eva.webp"
+  autoplay: false
 ---
 
 ## 一
@@ -47,7 +55,7 @@ header_image: /intro/eva.webp
 > 完成了弑父（碇源堂）
 > 告别了第一次让他荷尔蒙喷涌的肉体初恋（明日香）
 > 和第一次让他心潮澎湃的精神初恋（渚薰）
-> 挺过了一次又一次精神崩溃（导致世界毁灭的“冲击”）
+> 挺过了一次又一次精神崩溃（导致世界毁灭的"冲击"）
 > 最终找了一个从未设想过的人为伴，成为一个每天挤电车上班的无聊大人
 
 而这，不就是我吗？

@@ -124,3 +124,11 @@ jsonContent:
     excerpt: false
     categories: true
     tags: true
+
+# APlayer 音乐播放器配置
+# 文档: https://github.com/MoePlayer/hexo-tag-aplayer
+aplayer:
+  meting: false      # 禁用 MetingJS，使用自定义音频链接
+  asset_inject: true # 自动注入 CSS 和 JS
+  style: /css/aplayer.min.css
+  script: /js/aplayer.min.js

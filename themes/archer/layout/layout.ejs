@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="<%- config.language %>">
     <%- partial('_partial/base-head') %>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ == undefined) {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="<%- url_for('lib/jquery.min.js') %>" />')
-        }
-    </script>
+    <script src="<%- url_for('lib/jquery.min.js') %>"></script>
     <%_ if (is_home()) { _%>
         <body class="home-body">
     <%_ } else if(is_post()){ _%>
@@ -53,7 +47,7 @@
         <!-- main func -->
         <script src="<%- url_for('scripts/main.js') %>"></script>
         <!-- fancybox -->
-        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js" onload="window.Fancybox.bind('[data-fancybox]')" defer></script>
+        <script src="<%- url_for('lib/fancybox.umd.js') %>" onload="window.Fancybox.bind('[data-fancybox]')" defer></script>
         <!-- algolia -->
         <%_ if (theme.algolia_search.enable) { _%>
             <%- partial('_partial/algolia') %>
@@ -70,6 +64,11 @@
         <!-- mermaid -->
         <%_ if (is_post() && theme.mermaid.enable) { _%>
             <script src='https://cdn.jsdelivr.net/npm/mermaid@<%= theme.mermaid.version %>/dist/mermaid.min.js' onload="window.mermaid.initialize({theme: '<%= theme.mermaid.theme %>'})" async></script>
+        <%_ } _%>
+        <!-- APlayer for post music -->
+        <%_ if (is_post() && page.music && page.music.enable) { _%>
+            <link rel="stylesheet" href="<%- url_for('lib/APlayer.min.css') %>">
+            <script src="<%- url_for('lib/APlayer.min.js') %>"></script>
         <%_ } _%>
     </body>
 </html>
