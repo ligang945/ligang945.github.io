@@ -91,7 +91,11 @@
                     const playerContainer = document.getElementById('post-music-player');
                     
                     // Check if dark mode is active
-                    const isDarkMode = () => document.querySelector('#stylesheet-theme-dark') !== null;
+                    const isDarkMode = () => {
+                        const preferred = localStorage.getItem('preferredThemeMode');
+                        if (preferred) return preferred === 'dark';
+                        return window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    };
                     
                     // Update player theme class and APlayer theme color
                     const updateTheme = () => {
