@@ -114,10 +114,10 @@
                         mini: false,
                         theme: isDarkMode() ? '#5a8bc7' : '#b7daff',
                         audio: [{
-                            name: '<%= page.music.title || "Unknown" %>',
-                            artist: '<%= page.music.artist || "Unknown" %>',
-                            url: '<%= page.music.url %>',
-                            cover: '<%= page.music.cover || "" %>'
+                            name: <%- JSON.stringify(page.music.title || "Unknown") %>,
+                            artist: <%- JSON.stringify(page.music.artist || "Unknown") %>,
+                            url: <%- JSON.stringify(page.music.url) %>,
+                            cover: <%- JSON.stringify(page.music.cover || "") %>
                         }],
                         autoplay: <%= page.music.autoplay || false %>,
                         preload: 'metadata'
