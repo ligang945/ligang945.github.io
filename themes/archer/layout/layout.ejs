@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="<%- config.language %>">
     <%- partial('_partial/base-head') %>
-    <script src="<%- url_for('lib/jquery.min.js') %>"></script>
     <%_ if (is_home()) { _%>
         <body class="home-body">
     <%_ } else if(is_post()){ _%>
@@ -44,6 +43,8 @@
         <%- partial('./site-meta.ejs') %>
         <!-- import experimental options here -->
         <%- partial('_partial/custom-font', {}, {cache: true}) %>
+        <!-- jquery -->
+        <script src="<%- url_for('lib/jquery.min.js') %>"></script>
         <!-- main func -->
         <script src="<%- url_for('scripts/main.js') %>"></script>
         <!-- fancybox -->
