@@ -64,7 +64,7 @@
         <%_ } _%>
         <!-- mermaid -->
         <%_ if (is_post() && theme.mermaid.enable) { _%>
-            <script src='https://cdn.jsdelivr.net/npm/mermaid@<%= theme.mermaid.version %>/dist/mermaid.min.js' onload="window.mermaid.initialize({theme: '<%= theme.mermaid.theme %>'})" async></script>
+            <script src='https://cdn.jsdelivr.net/npm/mermaid@<%- theme.mermaid.version %>/dist/mermaid.min.js' onload="window.mermaid.initialize({theme: '<%= theme.mermaid.theme %>'})" async></script>
         <%_ } _%>
         <!-- APlayer for post music -->
         <%_ if (is_post() && page.music && page.music.enable) { _%>
