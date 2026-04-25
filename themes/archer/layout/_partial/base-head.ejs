@@ -1,7 +1,7 @@
 <!-- title -->
 <%_ var title = "" _%>
 <%_ if (page.title) { _%>
-    <%_ title = page.title + ' · ' + theme.SEO_title || config.title _%>
+    <%_ title = page.title + ' · ' + (theme.SEO_title || config.title) _%>
 <%_ } else { _%>
     <%_ title = theme.SEO_title _%>
 <%_ } _%>
