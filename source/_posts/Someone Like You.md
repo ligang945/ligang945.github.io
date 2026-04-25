@@ -6,6 +6,13 @@ tags:
 - 意识流
 categories: 生活
 header_image: /intro/pity.jpeg
+music:
+  enable: true
+  title: "Hello"
+  artist: "Adele"
+  url: "https://music-1301739381.cos.ap-singapore.myqcloud.com/lhcos-data/hello.opus"
+  cover: "/intro/pity.jpeg"
+  autoplay: false
 ---
 
 ### Gin Tonic
