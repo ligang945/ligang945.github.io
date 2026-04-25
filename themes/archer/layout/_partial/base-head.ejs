@@ -46,9 +46,9 @@
             var labels = JSON.parse('<%- JSON.stringify(theme.algolia_search.labels) %>')
 
             var algolia = {
-                applicationID: '<%- config.algolia.applicationID %>',
-                apiKey: '<%- config.algolia.apiKey %>',
-                indexName: '<%- config.algolia.indexName %>',
+                applicationID: <%- JSON.stringify(config.algolia.applicationID) %>,
+                apiKey: <%- JSON.stringify(config.algolia.apiKey) %>,
+                indexName: <%- JSON.stringify(config.algolia.indexName) %>,
                 hits: hits,
                 labels: labels
             }
