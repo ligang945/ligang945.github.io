@@ -11,7 +11,7 @@ music:
   enable: true
   title: "One Last Kiss"
   artist: "宇多田ヒカル"
-  url: "https://music-1301739381.cos.ap-singapore.myqcloud.com/lhcos-data/one.last.kiss.mp3"
+  url: "/music/one.last.kiss.mp3"
   cover: "/intro/eva.webp"
   autoplay: false
 ---
