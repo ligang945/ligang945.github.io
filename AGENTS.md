@@ -53,7 +53,7 @@ music:
   enable: true
   title: "One Last Kiss"
   artist: "宇多田ヒカル"
-  url: "https://your-cos-domain.com/music/one-last-kiss.mp3"
+  url: "/music/one.last.kiss.mp3"
   cover: "/intro/eva.webp"
   autoplay: false
 ---

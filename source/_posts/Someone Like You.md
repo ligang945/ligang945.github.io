@@ -10,7 +10,7 @@ music:
   enable: true
   title: "Hello"
   artist: "Adele"
-  url: "https://music-1301739381.cos.ap-singapore.myqcloud.com/lhcos-data/hello.opus"
+  url: "/music/hello.opus"
   cover: "/intro/pity.jpeg"
   autoplay: false
 ---
