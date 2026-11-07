@@ -3,7 +3,7 @@
 <%_ if (page.title) { _%>
     <%_ title = page.title + ' · ' + (theme.SEO_title || config.title) _%>
 <%_ } else { _%>
-    <%_ title = theme.SEO_title _%>
+    <%_ title = theme.SEO_title || config.title _%>
 <%_ } _%>
 <!-- keywords -->
 <%_ var keywords = "" _%>
@@ -42,16 +42,13 @@
     <!-- algolia -->
     <%_ if (theme.algolia_search != undefined && theme.algolia_search.enable) { _%>
         <script>
-            var hits = JSON.parse('<%- JSON.stringify(theme.algolia_search.hits) %>')
-            var labels = JSON.parse('<%- JSON.stringify(theme.algolia_search.labels) %>')
-
-            var algolia = {
-                applicationID: <%- JSON.stringify(config.algolia.applicationID) %>,
-                apiKey: <%- JSON.stringify(config.algolia.apiKey) %>,
-                indexName: <%- JSON.stringify(config.algolia.indexName) %>,
-                hits: hits,
-                labels: labels
-            }
+            var algolia = <%- json_script({
+                applicationID: config.algolia.applicationID,
+                apiKey: config.algolia.apiKey,
+                indexName: config.algolia.indexName,
+                hits: theme.algolia_search.hits,
+                labels: theme.algolia_search.labels
+            }) %>;
         </script>
     <%_ } _%>
     <!-- 百度统计  -->
