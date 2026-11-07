@@ -36,6 +36,7 @@
     <link id="stylesheet-mobile" rel="preload" href="<%- url_for("css/mobile.css") %>" as="style" onload="this.onload=null;this.rel='stylesheet';this.media='screen and (max-width: 960px)'">
     <link id="stylesheet-theme-dark" rel="preload" href="<%- url_for("css/dark.css") %>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <%_ if (is_post() && post_music_config(page)) { _%>
+        <link id="stylesheet-aplayer" rel="stylesheet" href="<%- url_for('lib/APlayer.min.css') %>">
         <link id="stylesheet-post-music" rel="stylesheet" href="<%- url_for('css/post-music.css') %>">
     <%_ } _%>
     <link rel="preload" href="<%- url_for('lib/jquery.min.js') %>" as="script">
