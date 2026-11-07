@@ -1,0 +1,5 @@
+<%_ const music = post_music_config(page) _%>
+<%_ if (music) { _%>
+    <div id="post-music-player" class="post-music-player" aria-label="文章音乐播放器"></div>
+    <script type="application/json" id="post-music-config"><%- json_script(music) %></script>
+<%_ } _%>

@@ -67,9 +67,9 @@
             <script src='https://cdn.jsdelivr.net/npm/mermaid@<%= theme.mermaid.version %>/dist/mermaid.min.js' onload="window.mermaid.initialize({theme: '<%= theme.mermaid.theme %>'})" async></script>
         <%_ } _%>
         <!-- APlayer for post music -->
-        <%_ if (is_post() && page.music && page.music.enable) { _%>
-            <link rel="stylesheet" href="<%- url_for('lib/APlayer.min.css') %>">
+        <%_ if (is_post() && post_music_config(page)) { _%>
             <script src="<%- url_for('lib/APlayer.min.js') %>"></script>
+            <script src="<%- url_for('scripts/post-music.js') %>"></script>
         <%_ } _%>
     </body>
 </html>
