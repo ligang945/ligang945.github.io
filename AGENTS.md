@@ -19,7 +19,8 @@
 ### 文章音乐播放器 (APlayer)
 每篇文章支持独立的音乐播放器，播放器显示在正文前面。
 
-**音乐文件存放**: COS 服务器
+**音乐文件存放**: 本地 `source/music/` 或 COS 等远程 URL
+**实现与字段说明**: `themes/archer/docs/music.md`
 
 **使用方法** - 在文章 Front-matter 中添加：
 
@@ -57,11 +58,4 @@ music:
   cover: "/intro/eva.webp"
   autoplay: false
 ---
-```
-
-### 内嵌音乐播放器 (可选)
-如需在文章正文中内嵌播放器（另一种方式），可使用 hexo-tag-aplayer 标签：
-
-```markdown
-{% aplayer "歌曲标题" "艺术家" "音乐URL" "封面URL" %}
 ```

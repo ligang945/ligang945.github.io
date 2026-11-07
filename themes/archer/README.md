@@ -10,6 +10,8 @@
 
 - [English document](./docs/README-en.md)
 - [二次开发文档](./docs/develop-guide-zh.md)
+- [文章音乐播放器（本地扩展）](./docs/music.md)
+- [第三方前端资源清单](./THIRD_PARTY.md)
 
 ## 说明
 
